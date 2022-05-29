@@ -12,7 +12,7 @@ namespace AppServices
         public void NewProblem( string description)
         {
             Problem  problem = new Problem();
-            problem.Status = (int)StatusCode.New;
+            problem.StatusCode = (int)StatusCode.New;
             problem.Description = description;
         }
     }

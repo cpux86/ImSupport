@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AppCore.Modeles
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
     }
 }
