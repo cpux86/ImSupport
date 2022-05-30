@@ -15,7 +15,10 @@ namespace AppCore.Modeles
             Stopped = 3,
             Success = 4
         }
-
+        /// <summary>
+        /// Заголовок заявки
+        /// </summary>
+        public string Title { get; set; } = string.Empty;
         /// <summary>
         /// Описание неисправности
         /// </summary>
@@ -29,6 +32,7 @@ namespace AppCore.Modeles
         /// Устройсво подлежащее обслуживанию или ремонту
         /// </summary>
         public int? DeviceId { get; private set; }
+        public Device? Device { get; private set; }
 
         /// <summary>
         /// Испольнитель(и)
@@ -43,8 +47,9 @@ namespace AppCore.Modeles
         //public string ServiceCenter { get; set; }   
 
         private Problem() { }
-        public Problem(string description, string client, DateTime dateTime, int? deviceId)
+        public Problem(string title, string description, string client, int? deviceId, DateTime dateTime)
         {
+            Title = title;
             Description = description;
             Client = client;
             StatusCode = (int)Status.Proccesing;

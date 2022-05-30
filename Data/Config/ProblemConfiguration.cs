@@ -13,7 +13,11 @@ namespace Data.Config
     {
         public void Configure(EntityTypeBuilder<Problem> builder)
         {
-            //throw new NotImplementedException();
+
+            builder.Property(p => p.Id)
+                .HasColumnOrder(0);
+            builder.Property(p => p.Title)
+                .HasColumnOrder(1);
         }
     }
 }

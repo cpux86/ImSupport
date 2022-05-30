@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProblemContext))]
-    [Migration("20220530143931_Init1")]
-    partial class Init1
+    [Migration("20220530195858_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,7 +60,8 @@ namespace Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnOrder(0);
 
                     b.Property<string>("Client")
                         .IsRequired()
@@ -87,6 +88,11 @@ namespace Data.Migrations
                     b.Property<int>("StatusCode")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnOrder(1);
+
                     b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
@@ -105,9 +111,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("AppCore.Modeles.Problem", b =>
                 {
-                    b.HasOne("AppCore.Modeles.Device", null)
+                    b.HasOne("AppCore.Modeles.Device", "Device")
                         .WithMany("Problem")
                         .HasForeignKey("DeviceId");
+
+                    b.Navigation("Device");
                 });
 
             modelBuilder.Entity("AppCore.Modeles.Device", b =>

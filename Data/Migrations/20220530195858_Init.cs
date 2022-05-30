@@ -48,6 +48,7 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     StatusCode = table.Column<int>(type: "INTEGER", nullable: false),
                     Message = table.Column<string>(type: "TEXT", nullable: false),

@@ -1,4 +1,5 @@
 ﻿//using AppCore.Modeles;
+using AppCore.Interfaces;
 using AppCore.Modeles;
 using Data.Config;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +11,8 @@ using System.Threading.Tasks;
 
 namespace Data.Context
 {
-    public class ProblemContext : DbContext
+    public class ProblemContext : DbContext, IProblemContext
     {
-       
-
-        //}
 
         public DbSet<Problem>? Problems { get; set; }
         public DbSet<Device>? Devices { get; set; }
