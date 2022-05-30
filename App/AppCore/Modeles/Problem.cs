@@ -14,7 +14,6 @@ namespace AppCore.Modeles
             Running = 2,
             Stopped = 3,
             Success = 4
-
         }
 
         /// <summary>
@@ -27,7 +26,7 @@ namespace AppCore.Modeles
         /// </summary>
         public string Message { get; private set; } = String.Empty;
         /// <summary>
-        /// Устройсво подлежащее обслуживанию или ремонта
+        /// Устройсво подлежащее обслуживанию или ремонту
         /// </summary>
         public int? DeviceId { get; private set; }
 

@@ -13,7 +13,7 @@ namespace Data.Config
     {
         public void Configure(EntityTypeBuilder<Problem> builder)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
