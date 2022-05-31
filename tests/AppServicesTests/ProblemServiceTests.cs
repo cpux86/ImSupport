@@ -9,13 +9,14 @@ namespace AppServicesTests
     {
         [Theory]
         [InlineData("Не иправность камеры", "работает через раз", "Леднев И")]
-        public void AddProblemSuccess(string title, string description, string surnameAndInitials)
+        [InlineData("Не работают камеры на УСК", "работает через раз", "Горбаток Е.")]
+        public void AddProblemSuccess(string title, string? description, string client)
         {
             var options = new DbContextOptionsBuilder<ProblemContext>()
             .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
             .Options;
             ProblemServices services = new ProblemServices(new ProblemContext(options));
-            services.AddProblem(title, description, surnameAndInitials, 1);
+            services.AddProblem(title, description, client, 1);
         }
     }
 }

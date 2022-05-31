@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProblemContext))]
-    [Migration("20220530195858_Init")]
-    partial class Init
+    [Migration("20220531081627_Init1")]
+    partial class Init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,7 +68,9 @@ namespace Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedDataTime")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("datetime('now')");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -81,9 +83,15 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("LocationId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("NomberProblem")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("StatusCode")
                         .HasColumnType("INTEGER");
@@ -96,6 +104,8 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Problems");
                 });
@@ -115,7 +125,13 @@ namespace Data.Migrations
                         .WithMany("Problem")
                         .HasForeignKey("DeviceId");
 
+                    b.HasOne("AppCore.Modeles.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
                     b.Navigation("Device");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("AppCore.Modeles.Device", b =>

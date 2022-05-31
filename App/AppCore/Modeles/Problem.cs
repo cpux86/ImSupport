@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,9 @@ namespace AppCore.Modeles
             Proccesing = 1,
             Running = 2,
             Stopped = 3,
-            Success = 4
+            Done = 4
         }
+        public int? NomberProblem { get; set; }  
         /// <summary>
         /// Заголовок заявки
         /// </summary>
@@ -33,7 +35,11 @@ namespace AppCore.Modeles
         /// </summary>
         public int? DeviceId { get; private set; }
         public Device? Device { get; private set; }
-
+        /// <summary>
+        /// Место, участок или расположение устройства 
+        /// </summary>
+        public int? LocationId { get; private set; } 
+        public Location? Location { get; private set; }
         /// <summary>
         /// Испольнитель(и)
         /// </summary>
@@ -47,14 +53,15 @@ namespace AppCore.Modeles
         //public string ServiceCenter { get; set; }   
 
         private Problem() { }
-        public Problem(string title, string description, string client, int? deviceId, DateTime dateTime)
+        public Problem(string title, string? description, string client, int? deviceId, DateTime dateTime)
         {
             Title = title;
             Description = description;
             Client = client;
             StatusCode = (int)Status.Proccesing;
-            CreatedDataTime = dateTime;
+            //CreatedDataTime = dateTime;
             DeviceId = deviceId;
+            LocationId = 1;
         }
 
     }

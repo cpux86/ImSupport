@@ -18,6 +18,8 @@ namespace Data.Config
                 .HasColumnOrder(0);
             builder.Property(p => p.Title)
                 .HasColumnOrder(1);
+            builder.Property(p => p.CreatedDataTime)
+                .HasDefaultValueSql("datetime('now')");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace AppServices
             _context = context;
         }
 
-        public async void AddProblem(string title, string description, string client, int? deviceId)
+        public async void AddProblem(string title, string? description, string client, int? deviceId)
         {
             Problem problem = new Problem(title, description, client, deviceId, DateTime.Now);
 

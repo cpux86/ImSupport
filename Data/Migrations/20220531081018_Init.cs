@@ -49,13 +49,15 @@ namespace Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
+                    NomberProblem = table.Column<int>(type: "INTEGER", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     StatusCode = table.Column<int>(type: "INTEGER", nullable: false),
                     Message = table.Column<string>(type: "TEXT", nullable: false),
                     DeviceId = table.Column<int>(type: "INTEGER", nullable: true),
+                    LocationId = table.Column<int>(type: "INTEGER", nullable: true),
                     Executor = table.Column<string>(type: "TEXT", nullable: false),
                     Client = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedDataTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    CreatedDataTime = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "getdate()")
                 },
                 constraints: table =>
                 {
@@ -64,6 +66,11 @@ namespace Data.Migrations
                         name: "FK_Problems_Devices_DeviceId",
                         column: x => x.DeviceId,
                         principalTable: "Devices",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Problems_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
                         principalColumn: "Id");
                 });
 
@@ -76,6 +83,11 @@ namespace Data.Migrations
                 name: "IX_Problems_DeviceId",
                 table: "Problems",
                 column: "DeviceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Problems_LocationId",
+                table: "Problems",
+                column: "LocationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
