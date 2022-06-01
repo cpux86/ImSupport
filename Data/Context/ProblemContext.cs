@@ -14,9 +14,10 @@ namespace Data.Context
     public class ProblemContext : DbContext, IProblemContext
     {
 
-        public DbSet<Problem>? Problems { get; set; }
+        public DbSet<Case>? Cases { get; set; }
         public DbSet<Device>? Devices { get; set; }
         public DbSet<Location>? Locations { get; set; }
+        //public DbSet<CaseDescription>? CaseDescriptions { get; set; }   
         public ProblemContext() {}
         public ProblemContext(DbContextOptions options) : base(options){}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,7 +37,7 @@ namespace Data.Context
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new ProblemConfiguration());
+            builder.ApplyConfiguration(new CaseConfiguration());
         }
     }
 }

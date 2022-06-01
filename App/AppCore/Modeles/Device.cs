@@ -11,6 +11,6 @@ namespace AppCore.Modeles
         public string Name { get; set; } = String.Empty;
         public Location? Location { get; set; }
         public string? Description { get; set; }
-        public List<Problem>? Problem { get; set; }
+        public List<Case>? Problem { get; set; }
     }
 }

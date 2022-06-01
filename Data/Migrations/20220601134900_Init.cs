@@ -10,6 +10,19 @@ namespace Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "CaseDescriptions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CaseDescriptions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
@@ -43,57 +56,71 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Problems",
+                name: "Cases",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CaseId = table.Column<int>(type: "INTEGER", nullable: true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
-                    NomberProblem = table.Column<int>(type: "INTEGER", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    DescriptionId = table.Column<int>(type: "INTEGER", nullable: false),
                     StatusCode = table.Column<int>(type: "INTEGER", nullable: false),
                     Message = table.Column<string>(type: "TEXT", nullable: false),
                     DeviceId = table.Column<int>(type: "INTEGER", nullable: true),
                     LocationId = table.Column<int>(type: "INTEGER", nullable: true),
                     Executor = table.Column<string>(type: "TEXT", nullable: false),
                     Client = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedDataTime = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "getdate()")
+                    CreatedData = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Problems", x => x.Id);
+                    table.PrimaryKey("PK_Cases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Problems_Devices_DeviceId",
+                        name: "FK_Cases_CaseDescriptions_DescriptionId",
+                        column: x => x.DescriptionId,
+                        principalTable: "CaseDescriptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cases_Devices_DeviceId",
                         column: x => x.DeviceId,
                         principalTable: "Devices",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Problems_Locations_LocationId",
+                        name: "FK_Cases_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Devices_LocationId",
-                table: "Devices",
-                column: "LocationId");
+                name: "IX_Cases_DescriptionId",
+                table: "Cases",
+                column: "DescriptionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Problems_DeviceId",
-                table: "Problems",
+                name: "IX_Cases_DeviceId",
+                table: "Cases",
                 column: "DeviceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Problems_LocationId",
-                table: "Problems",
+                name: "IX_Cases_LocationId",
+                table: "Cases",
+                column: "LocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devices_LocationId",
+                table: "Devices",
                 column: "LocationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Problems");
+                name: "Cases");
+
+            migrationBuilder.DropTable(
+                name: "CaseDescriptions");
 
             migrationBuilder.DropTable(
                 name: "Devices");

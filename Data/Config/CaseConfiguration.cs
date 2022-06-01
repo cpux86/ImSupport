@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 
 namespace Data.Config
 {
-    public class ProblemConfiguration : IEntityTypeConfiguration<Problem>
+    public class CaseConfiguration : IEntityTypeConfiguration<Case>
     {
-        public void Configure(EntityTypeBuilder<Problem> builder)
+        public void Configure(EntityTypeBuilder<Case> builder)
         {
 
             builder.Property(p => p.Id)
                 .HasColumnOrder(0);
-            builder.Property(p => p.Title)
+            builder.Property(p => p.CaseId)
                 .HasColumnOrder(1);
-            builder.Property(p => p.CreatedDataTime)
-                .HasDefaultValueSql("datetime('now')");
+            builder.Property(p => p.Title)
+                .HasColumnOrder(2);
+            //builder.Property(p => p.CreatedData)
+            //    .HasDefaultValueSql("datetime('now')");
         }
     }
 }

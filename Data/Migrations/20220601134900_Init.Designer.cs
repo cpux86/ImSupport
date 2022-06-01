@@ -3,6 +3,7 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProblemContext))]
-    partial class ProblemContextModelSnapshot : ModelSnapshot
+    [Migration("20220601134900_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -83,7 +85,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CaseDescription");
+                    b.ToTable("CaseDescriptions");
                 });
 
             modelBuilder.Entity("AppCore.Modeles.Device", b =>

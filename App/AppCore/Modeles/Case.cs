@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppCore.Modeles
 {
-    public class Problem : BaseEntity
+    public class Case : BaseEntity
     {
         private enum Status
         {
@@ -16,7 +16,10 @@ namespace AppCore.Modeles
             Stopped = 3,
             Done = 4
         }
-        public int? NomberProblem { get; set; }  
+        /// <summary>
+        /// Номер дела
+        /// </summary>
+        public int? CaseId { get; set; }  
         /// <summary>
         /// Заголовок заявки
         /// </summary>
@@ -24,7 +27,7 @@ namespace AppCore.Modeles
         /// <summary>
         /// Описание неисправности
         /// </summary>
-        public string Description { get; private set; } = String.Empty;
+        public CaseDescription Description { get; private set; }
         public int StatusCode { get; private set; }
         /// <summary>
         /// Ответ для клиента
@@ -48,18 +51,24 @@ namespace AppCore.Modeles
         /// Кто опубликовал задачу
         /// </summary>
         public string Client { get; private set; } = String.Empty;
-        public DateTime CreatedDataTime { get; private set; }
+        public DateTimeOffset CreatedData { get; private set; }
 
         //public string ServiceCenter { get; set; }   
 
-        private Problem() { }
-        public Problem(string title, string? description, string client, int? deviceId, DateTime dateTime)
+        private Case() { }
+        public Case(
+            string title,
+            CaseDescription description,
+            string client,
+            int? deviceId,
+            DateTime dateTime
+            )
         {
             Title = title;
             Description = description;
             Client = client;
             StatusCode = (int)Status.Proccesing;
-            //CreatedDataTime = dateTime;
+            CreatedData = DateTimeOffset.Now;
             DeviceId = deviceId;
             LocationId = 1;
         }
