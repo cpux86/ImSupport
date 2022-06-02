@@ -8,6 +8,8 @@ namespace AppCore.Modeles
 {
     public class CaseDescription : BaseEntity
     {
-        public string Description { get; set; }
+        public int CaseId { get; set; } 
+        public Case Case { get; set; }    
+        public string Description { get; set; } = String.Empty;
     }
 }

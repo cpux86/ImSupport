@@ -17,9 +17,9 @@ namespace AppCore.Modeles
             Done = 4
         }
         /// <summary>
-        /// Номер дела
+        /// Номер заявки или дела
         /// </summary>
-        public int? CaseId { get; set; }  
+        public int? CaseNumber { get; set; }  
         /// <summary>
         /// Заголовок заявки
         /// </summary>
@@ -27,8 +27,8 @@ namespace AppCore.Modeles
         /// <summary>
         /// Описание неисправности
         /// </summary>
-        public CaseDescription Description { get; private set; }
-        public int StatusCode { get; private set; }
+        public CaseDescription? Description { get; private set; }
+        public byte StatusCode { get; private set; }
         /// <summary>
         /// Ответ для клиента
         /// </summary>
@@ -50,7 +50,7 @@ namespace AppCore.Modeles
         /// <summary>
         /// Кто опубликовал задачу
         /// </summary>
-        public string Client { get; private set; } = String.Empty;
+        public string User { get; private set; } = String.Empty;
         public DateTimeOffset CreatedData { get; private set; }
 
         //public string ServiceCenter { get; set; }   
@@ -66,8 +66,8 @@ namespace AppCore.Modeles
         {
             Title = title;
             Description = description;
-            Client = client;
-            StatusCode = (int)Status.Proccesing;
+            User = client;
+            StatusCode = (byte)Status.Proccesing;
             CreatedData = DateTimeOffset.Now;
             DeviceId = deviceId;
             LocationId = 1;

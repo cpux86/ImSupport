@@ -16,10 +16,13 @@ namespace Data.Config
 
             builder.Property(p => p.Id)
                 .HasColumnOrder(0);
-            builder.Property(p => p.CaseId)
+            builder.Property(p => p.CaseNumber)
                 .HasColumnOrder(1);
             builder.Property(p => p.Title)
                 .HasColumnOrder(2);
+            builder.HasOne(d => d.Description)
+                .WithOne(c => c.Case)
+                .OnDelete(DeleteBehavior.Cascade);
             //builder.Property(p => p.CreatedData)
             //    .HasDefaultValueSql("datetime('now')");
         }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProblemContext))]
-    [Migration("20220601135717_Init1")]
-    partial class Init1
+    [Migration("20220601170028_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,19 +26,12 @@ namespace Data.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(0);
 
-                    b.Property<int?>("CaseId")
+                    b.Property<int?>("CaseNumber")
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(1);
 
-                    b.Property<string>("Client")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTimeOffset>("CreatedData")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("DescriptionId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("DeviceId")
                         .HasColumnType("INTEGER");
@@ -54,7 +47,7 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("StatusCode")
+                    b.Property<byte>("StatusCode")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -62,9 +55,11 @@ namespace Data.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
-                    b.HasKey("Id");
+                    b.Property<string>("User")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("DescriptionId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
 
@@ -79,11 +74,17 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("CaseId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CaseId")
+                        .IsUnique();
 
                     b.ToTable("CaseDescription");
                 });
@@ -127,12 +128,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("AppCore.Modeles.Case", b =>
                 {
-                    b.HasOne("AppCore.Modeles.CaseDescription", "Description")
-                        .WithMany()
-                        .HasForeignKey("DescriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AppCore.Modeles.Device", "Device")
                         .WithMany("Problem")
                         .HasForeignKey("DeviceId");
@@ -141,11 +136,20 @@ namespace Data.Migrations
                         .WithMany()
                         .HasForeignKey("LocationId");
 
-                    b.Navigation("Description");
-
                     b.Navigation("Device");
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("AppCore.Modeles.CaseDescription", b =>
+                {
+                    b.HasOne("AppCore.Modeles.Case", "Case")
+                        .WithOne("Description")
+                        .HasForeignKey("AppCore.Modeles.CaseDescription", "CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
                 });
 
             modelBuilder.Entity("AppCore.Modeles.Device", b =>
@@ -155,6 +159,11 @@ namespace Data.Migrations
                         .HasForeignKey("LocationId");
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("AppCore.Modeles.Case", b =>
+                {
+                    b.Navigation("Description");
                 });
 
             modelBuilder.Entity("AppCore.Modeles.Device", b =>

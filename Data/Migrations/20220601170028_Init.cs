@@ -10,19 +10,6 @@ namespace Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CaseDescriptions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Description = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CaseDescriptions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
@@ -61,26 +48,19 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CaseId = table.Column<int>(type: "INTEGER", nullable: true),
+                    CaseNumber = table.Column<int>(type: "INTEGER", nullable: true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
-                    DescriptionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    StatusCode = table.Column<int>(type: "INTEGER", nullable: false),
+                    StatusCode = table.Column<byte>(type: "INTEGER", nullable: false),
                     Message = table.Column<string>(type: "TEXT", nullable: false),
                     DeviceId = table.Column<int>(type: "INTEGER", nullable: true),
                     LocationId = table.Column<int>(type: "INTEGER", nullable: true),
                     Executor = table.Column<string>(type: "TEXT", nullable: false),
-                    Client = table.Column<string>(type: "TEXT", nullable: false),
+                    User = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedData = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cases", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Cases_CaseDescriptions_DescriptionId",
-                        column: x => x.DescriptionId,
-                        principalTable: "CaseDescriptions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Cases_Devices_DeviceId",
                         column: x => x.DeviceId,
@@ -93,10 +73,31 @@ namespace Data.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CaseDescription",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CaseId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CaseDescription", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CaseDescription_Cases_CaseId",
+                        column: x => x.CaseId,
+                        principalTable: "Cases",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Cases_DescriptionId",
-                table: "Cases",
-                column: "DescriptionId");
+                name: "IX_CaseDescription_CaseId",
+                table: "CaseDescription",
+                column: "CaseId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cases_DeviceId",
@@ -117,10 +118,10 @@ namespace Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cases");
+                name: "CaseDescription");
 
             migrationBuilder.DropTable(
-                name: "CaseDescriptions");
+                name: "Cases");
 
             migrationBuilder.DropTable(
                 name: "Devices");
