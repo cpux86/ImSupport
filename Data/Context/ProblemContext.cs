@@ -1,6 +1,6 @@
 ﻿//using AppCore.Modeles;
 using AppCore.Interfaces;
-using AppCore.Modeles;
+using AppCore.Models;
 using Data.Config;
 using Microsoft.EntityFrameworkCore;
 using System;

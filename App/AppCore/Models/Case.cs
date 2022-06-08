@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppCore.Modeles
+namespace AppCore.Models
 {
-    public class Case : BaseEntity
+    public class Case
     {
         private enum Status
         {
@@ -19,7 +19,7 @@ namespace AppCore.Modeles
         /// <summary>
         /// Номер заявки или дела
         /// </summary>
-        public int? CaseNumber { get; set; }  
+        public int CaseId { get; set; }
         /// <summary>
         /// Заголовок заявки
         /// </summary>
@@ -27,48 +27,48 @@ namespace AppCore.Modeles
         /// <summary>
         /// Описание неисправности
         /// </summary>
-        public CaseDescription? Description { get; private set; }
-        public byte StatusCode { get; private set; }
+        public string? Description { get; set; }
+        public byte CaseStatusCode { get; private set; }
         /// <summary>
         /// Ответ для клиента
         /// </summary>
         public string Message { get; private set; } = String.Empty;
         /// <summary>
-        /// Устройсво подлежащее обслуживанию или ремонту
+        /// Устройство подлежащее обслуживанию или ремонту
         /// </summary>
         public int? DeviceId { get; private set; }
         public Device? Device { get; private set; }
         /// <summary>
-        /// Место, участок или расположение устройства 
+        /// местоположение обслуживаемого объекта 
         /// </summary>
-        public int? LocationId { get; private set; } 
+        public int? LocationId { get; private set; }
         public Location? Location { get; private set; }
         /// <summary>
-        /// Испольнитель(и)
+        /// Исполнитель(и)
         /// </summary>
         public string Executor { get; private set; } = String.Empty;
         /// <summary>
-        /// Кто опубликовал задачу
+        /// Заказчик 
         /// </summary>
-        public string User { get; private set; } = String.Empty;
-        public DateTimeOffset CreatedData { get; private set; }
+        public string Client { get; private set; } = String.Empty;
+        public DateTimeOffset CreatedDate { get; private set; }
+        public  DateTimeOffset ModifiedDate  { get; set; }
 
         //public string ServiceCenter { get; set; }   
 
         private Case() { }
         public Case(
             string title,
-            CaseDescription description,
             string client,
             int? deviceId,
-            DateTime dateTime
+            DateTimeOffset dateTime
             )
         {
             Title = title;
-            Description = description;
-            User = client;
-            StatusCode = (byte)Status.Proccesing;
-            CreatedData = DateTimeOffset.Now;
+            Client = client;
+            CaseStatusCode = (byte)Status.Proccesing;
+            CreatedDate = dateTime;
+            ModifiedDate = dateTime;
             DeviceId = deviceId;
             LocationId = 1;
         }

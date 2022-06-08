@@ -1,4 +1,4 @@
-﻿using AppCore.Modeles;
+﻿using AppCore.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

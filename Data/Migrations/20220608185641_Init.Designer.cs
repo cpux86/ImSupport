@@ -3,6 +3,7 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,19 +11,24 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProblemContext))]
-    partial class ProblemContextModelSnapshot : ModelSnapshot
+    [Migration("20220608185641_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
 
             modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
-                    b.Property<int>("CaseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(0);
+
+                    b.Property<int?>("CaseNumber")
+                        .HasColumnType("INTEGER")
+                        .HasColumnOrder(1);
 
                     b.Property<byte>("CaseStatusCode")
                         .HasColumnType("INTEGER")
@@ -60,7 +66,7 @@ namespace Data.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
-                    b.HasKey("CaseId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
 

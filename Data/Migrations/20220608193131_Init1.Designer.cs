@@ -11,26 +11,33 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProblemContext))]
-    [Migration("20220601170028_Init")]
-    partial class Init
+    [Migration("20220608193131_Init1")]
+    partial class Init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
 
-            modelBuilder.Entity("AppCore.Modeles.Case", b =>
+            modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CaseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(0);
 
-                    b.Property<int?>("CaseNumber")
+                    b.Property<byte>("CaseStatusCode")
                         .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
+                        .HasColumnName("Status");
 
-                    b.Property<DateTimeOffset>("CreatedData")
+                    b.Property<string>("Client")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("DeviceId")
@@ -47,19 +54,15 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<byte>("StatusCode")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTimeOffset>("ModifiedDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
-                    b.Property<string>("User")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
+                    b.HasKey("CaseId");
 
                     b.HasIndex("DeviceId");
 
@@ -68,28 +71,7 @@ namespace Data.Migrations
                     b.ToTable("Cases");
                 });
 
-            modelBuilder.Entity("AppCore.Modeles.CaseDescription", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CaseId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CaseId")
-                        .IsUnique();
-
-                    b.ToTable("CaseDescription");
-                });
-
-            modelBuilder.Entity("AppCore.Modeles.Device", b =>
+            modelBuilder.Entity("AppCore.Models.Device", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -112,7 +94,7 @@ namespace Data.Migrations
                     b.ToTable("Devices");
                 });
 
-            modelBuilder.Entity("AppCore.Modeles.Location", b =>
+            modelBuilder.Entity("AppCore.Models.Location", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,13 +108,13 @@ namespace Data.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("AppCore.Modeles.Case", b =>
+            modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
-                    b.HasOne("AppCore.Modeles.Device", "Device")
-                        .WithMany("Problem")
+                    b.HasOne("AppCore.Models.Device", "Device")
+                        .WithMany("Cases")
                         .HasForeignKey("DeviceId");
 
-                    b.HasOne("AppCore.Modeles.Location", "Location")
+                    b.HasOne("AppCore.Models.Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId");
 
@@ -141,34 +123,23 @@ namespace Data.Migrations
                     b.Navigation("Location");
                 });
 
-            modelBuilder.Entity("AppCore.Modeles.CaseDescription", b =>
+            modelBuilder.Entity("AppCore.Models.Device", b =>
                 {
-                    b.HasOne("AppCore.Modeles.Case", "Case")
-                        .WithOne("Description")
-                        .HasForeignKey("AppCore.Modeles.CaseDescription", "CaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Case");
-                });
-
-            modelBuilder.Entity("AppCore.Modeles.Device", b =>
-                {
-                    b.HasOne("AppCore.Modeles.Location", "Location")
-                        .WithMany()
+                    b.HasOne("AppCore.Models.Location", "Location")
+                        .WithMany("Devices")
                         .HasForeignKey("LocationId");
 
                     b.Navigation("Location");
                 });
 
-            modelBuilder.Entity("AppCore.Modeles.Case", b =>
+            modelBuilder.Entity("AppCore.Models.Device", b =>
                 {
-                    b.Navigation("Description");
+                    b.Navigation("Cases");
                 });
 
-            modelBuilder.Entity("AppCore.Modeles.Device", b =>
+            modelBuilder.Entity("AppCore.Models.Location", b =>
                 {
-                    b.Navigation("Problem");
+                    b.Navigation("Devices");
                 });
 #pragma warning restore 612, 618
         }

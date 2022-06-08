@@ -1,5 +1,5 @@
 ﻿using AppCore.Interfaces;
-using AppCore.Modeles;
+using AppCore.Models;
 
 namespace AppServices
 {
@@ -12,14 +12,17 @@ namespace AppServices
             _context = context;
         }
 
-        public async void AddProblem(string title, string? description, string client, int? deviceId)
+        public async void AddCase(string title, string? description, string client, int? deviceId)
         {
-            CaseDescription caseDescription = new CaseDescription();
-            caseDescription.Description = description;
+            //CaseDescription caseDescription = new CaseDescription();
+            //caseDescription.Description = description;
 
-            Case problem = new Case(title, caseDescription, client, deviceId, DateTime.Now);
+            var newCase = new Case(title, client, deviceId, DateTimeOffset.Now)
+            {
+                Description = description
+            };
 
-            _context.Cases?.Add(problem);
+            _context.Cases?.Add(newCase);
 
             await _context.SaveChangesAsync(CancellationToken.None);
         }

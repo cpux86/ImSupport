@@ -1,3 +1,5 @@
+using System;
+using System.Text;
 using AppServices;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +10,7 @@ namespace AppServicesTests
     public class CaseServiceTests
     {
         [Theory]
-        [InlineData("Не иправность камеры", "работает через раз", "Леднев И")]
+        [InlineData("Не исправность камеры", "работает через раз", "Леднев И")]
         [InlineData("Не работают камеры на УСК", "работает через раз", "Горбаток Е.")]
         public void AddCaseSuccess(string title, string? description, string client)
         {
@@ -16,7 +18,7 @@ namespace AppServicesTests
             .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
             .Options;
             CaseServices services = new CaseServices(new ProblemContext(options));
-            services.AddProblem(title, description, client, 1);
+            services.AddCase(title, description, client, 1);
         }
     }
 }
