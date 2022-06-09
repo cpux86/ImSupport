@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(ProblemContext))]
+    [DbContext(typeof(CaseContext))]
     [Migration("20220608185641_Init")]
     partial class Init
     {
@@ -54,7 +54,7 @@ namespace Data.Migrations
                     b.Property<int?>("LocationId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Message")
+                    b.Property<string>("CaseDoneComment")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

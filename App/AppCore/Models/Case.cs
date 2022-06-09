@@ -1,4 +1,6 @@
-﻿namespace AppCore.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AppCore.Models
 {
     public class Case
     {
@@ -12,7 +14,7 @@
         /// <summary>
         /// Номер заявки или дела
         /// </summary>
-        public int CaseId { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// Заголовок заявки
         /// </summary>
@@ -23,9 +25,9 @@
         public string? Description { get; set; }
         public byte CaseStatusCode { get; private set; }
         /// <summary>
-        /// Ответ для клиента
+        /// Описание проделанной работы
         /// </summary>
-        public string Message { get; private set; } = String.Empty;
+        public  List<TypeOfWork> TypeOfWorks { get; set; }
         /// <summary>
         /// Устройство подлежащее обслуживанию или ремонту
         /// </summary>

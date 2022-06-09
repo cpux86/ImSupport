@@ -5,9 +5,9 @@ namespace AppServices
 {
     public class CaseServices
     {
-        private readonly IProblemContext _context;
+        private readonly ICaseContext _context;
 
-        public CaseServices(IProblemContext context)
+        public CaseServices(ICaseContext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace AppServices
             {
                 Description = description
             };
-
+            TypeOfWork work = new TypeOfWork("Замена термопасты", "10");
+            newCase.TypeOfWorks = new List<TypeOfWork> { work };
             _context.Cases?.Add(newCase);
 
             await _context.SaveChangesAsync(CancellationToken.None);

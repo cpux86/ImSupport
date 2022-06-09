@@ -16,17 +16,20 @@ namespace Data.Config
 
             //builder.Property(p => p.Id)
             //    .HasColumnOrder(0);
-            builder.Property(p => p.CaseId)
+            builder.Property(p => p.Id)
                 .HasColumnOrder(0);
             builder.Property(p => p.Title)
                 .HasColumnOrder(2);
             builder.Property(p => p.CaseStatusCode)
                 .HasColumnName("Status");
-            //builder.HasOne(d => d.Description)
+            //builder.Property(d => d.WorkDoneDescriptionList)
+            //    .HasColumnName("WorkDoneDescription");
+            ////builder.HasOne(d => d.Description)
             //    .WithOne(c => c.Case)
             //    .OnDelete(DeleteBehavior.Cascade);
             //builder.Property(p => p.CreatedDate)
             //    .HasDefaultValueSql("datetime('now')");
+
         }
     }
 }

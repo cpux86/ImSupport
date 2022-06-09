@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    [Migration("20220609060701_Init2")]
-    partial class Init2
+    [Migration("20220609184913_Init4")]
+    partial class Init4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,10 +50,6 @@ namespace Data.Migrations
                     b.Property<int?>("LocationId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CaseDoneComment")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("TEXT");
 
@@ -61,6 +57,10 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
+
+                    b.Property<string>("WorkDoneDescription")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CaseId");
 

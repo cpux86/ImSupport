@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppCore.Interfaces
 {
-    public interface IProblemContext
+    public interface ICaseContext
     {
         DbSet<Case>? Cases { get; set; }
         DbSet<Device>? Devices { get; set; }

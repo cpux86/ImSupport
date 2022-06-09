@@ -11,15 +11,17 @@ using System.Threading.Tasks;
 
 namespace Data.Context
 {
-    public class ProblemContext : DbContext, IProblemContext
+    public class CaseContext : DbContext, ICaseContext, ITypeOfWorkContext
     {
 
         public DbSet<Case>? Cases { get; set; }
         public DbSet<Device>? Devices { get; set; }
         public DbSet<Location>? Locations { get; set; }
+        public DbSet<TypeOfWork> TypeOfWorks { get; set ; }
+
         //public DbSet<CaseDescription>? CaseDescriptions { get; set; }   
-        public ProblemContext() {}
-        public ProblemContext(DbContextOptions options) : base(options){}
+        public CaseContext() {}
+        public CaseContext(DbContextOptions options) : base(options){}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

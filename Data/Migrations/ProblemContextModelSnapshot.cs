@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(ProblemContext))]
+    [DbContext(typeof(CaseContext))]
     partial class ProblemContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
-                    b.Property<int>("CaseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(0);
@@ -48,10 +48,6 @@ namespace Data.Migrations
                     b.Property<int?>("LocationId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("TEXT");
 
@@ -60,7 +56,7 @@ namespace Data.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
-                    b.HasKey("CaseId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
 
@@ -107,6 +103,40 @@ namespace Data.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("AppCore.Models.TypeOfWork", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeOfWorks");
+                });
+
+            modelBuilder.Entity("CaseTypeOfWork", b =>
+                {
+                    b.Property<int>("CasesId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TypeOfWorksId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CasesId", "TypeOfWorksId");
+
+                    b.HasIndex("TypeOfWorksId");
+
+                    b.ToTable("CaseTypeOfWork");
+                });
+
             modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
                     b.HasOne("AppCore.Models.Device", "Device")
@@ -129,6 +159,21 @@ namespace Data.Migrations
                         .HasForeignKey("LocationId");
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("CaseTypeOfWork", b =>
+                {
+                    b.HasOne("AppCore.Models.Case", null)
+                        .WithMany()
+                        .HasForeignKey("CasesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppCore.Models.TypeOfWork", null)
+                        .WithMany()
+                        .HasForeignKey("TypeOfWorksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AppCore.Models.Device", b =>
