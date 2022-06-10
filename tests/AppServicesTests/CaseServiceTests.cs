@@ -22,14 +22,37 @@ namespace AppServicesTests
         }
 
         [Theory]
-        [InlineData("Замена блока питания", "328d0eb0-cbc3-4116-a440-b8f91c8d782d")]
+        [InlineData("Замена блока питания", "90493479437")]
         public void AddTypeWorkSuccess(string title, string userId)
         {
             var options = new DbContextOptionsBuilder<CaseContext>()
                 .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
                 .Options;
+            userId = $"{Guid.NewGuid()}";
             TypeWorkService services = new TypeWorkService(new CaseContext(options));
             services.AddType(title, userId);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        public void RemomeWorkByIdSuccess(int id)
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+                .Options;
+            TypeWorkService services = new TypeWorkService(new CaseContext(options));
+            services.RemoveById(id);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        public void RemomeWorkAllSuccess(int id)
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+                .Options;
+            TypeWorkService services = new TypeWorkService(new CaseContext(options));
+            services.RemoveAllByUserId();
         }
     }
 }
