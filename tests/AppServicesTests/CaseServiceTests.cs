@@ -29,7 +29,7 @@ namespace AppServicesTests
                 .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
                 .Options;
             userId = $"{Guid.NewGuid()}";
-            TypeWorkService services = new TypeWorkService(new CaseContext(options));
+            WorkService services = new WorkService(new CaseContext(options));
             services.AddType(title, userId);
         }
 
@@ -40,7 +40,7 @@ namespace AppServicesTests
             var options = new DbContextOptionsBuilder<CaseContext>()
                 .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
                 .Options;
-            TypeWorkService services = new TypeWorkService(new CaseContext(options));
+            WorkService services = new WorkService(new CaseContext(options));
             services.RemoveById(id);
         }
 
@@ -51,7 +51,7 @@ namespace AppServicesTests
             var options = new DbContextOptionsBuilder<CaseContext>()
                 .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
                 .Options;
-            TypeWorkService services = new TypeWorkService(new CaseContext(options));
+            WorkService services = new WorkService(new CaseContext(options));
             services.RemoveAllByUserId();
         }
     }

@@ -3,6 +3,7 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    partial class ProblemContextModelSnapshot : ModelSnapshot
+    [Migration("20220619210218_Init19")]
+    partial class Init19
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -119,7 +121,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorksList");
+                    b.ToTable("WorksLists");
                 });
 
             modelBuilder.Entity("CaseWorksList", b =>
@@ -127,12 +129,12 @@ namespace Data.Migrations
                     b.Property<int>("CasesId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("WorksListId")
+                    b.Property<int>("WorksListsId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("CasesId", "WorksListId");
+                    b.HasKey("CasesId", "WorksListsId");
 
-                    b.HasIndex("WorksListId");
+                    b.HasIndex("WorksListsId");
 
                     b.ToTable("CaseWorksList");
                 });
@@ -171,7 +173,7 @@ namespace Data.Migrations
 
                     b.HasOne("AppCore.Models.WorksList", null)
                         .WithMany()
-                        .HasForeignKey("WorksListId")
+                        .HasForeignKey("WorksListsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

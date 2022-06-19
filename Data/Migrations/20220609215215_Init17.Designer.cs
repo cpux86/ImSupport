@@ -121,7 +121,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfWorks");
+                    b.ToTable("WorksLists");
                 });
 
             modelBuilder.Entity("CaseTypeOfWork", b =>

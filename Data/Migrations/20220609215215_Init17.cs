@@ -18,18 +18,18 @@ namespace Data.Migrations
 
             migrationBuilder.RenameTable(
                 name: "TypeOfWork",
-                newName: "TypeOfWorks");
+                newName: "WorksLists");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_TypeOfWorks",
-                table: "TypeOfWorks",
+                table: "WorksLists",
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_CaseTypeOfWork_TypeOfWorks_TypeOfWorksId",
                 table: "CaseTypeOfWork",
                 column: "TypeOfWorksId",
-                principalTable: "TypeOfWorks",
+                principalTable: "WorksLists",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -42,10 +42,10 @@ namespace Data.Migrations
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_TypeOfWorks",
-                table: "TypeOfWorks");
+                table: "WorksLists");
 
             migrationBuilder.RenameTable(
-                name: "TypeOfWorks",
+                name: "WorksLists",
                 newName: "TypeOfWork");
 
             migrationBuilder.AddPrimaryKey(

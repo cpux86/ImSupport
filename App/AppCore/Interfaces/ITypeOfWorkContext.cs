@@ -10,7 +10,7 @@ namespace AppCore.Interfaces
 {
     public interface ITypeOfWorkContext
     {
-        public DbSet<TypeOfWork> TypeOfWorks { get; set; }
+        public DbSet<WorksList> WorksList { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

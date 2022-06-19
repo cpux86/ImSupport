@@ -9,35 +9,35 @@ using AppCore.Models;
 
 namespace AppServices
 {
-    public class TypeWorkService
+    public class WorkService
     {
         private readonly ITypeOfWorkContext _typeOfWorkContext;
 
-        public TypeWorkService(ITypeOfWorkContext typeOfWorkContext)
+        public WorkService(ITypeOfWorkContext typeOfWorkContext)
         {
             _typeOfWorkContext = typeOfWorkContext ?? throw new ArgumentNullException(nameof(typeOfWorkContext));
         }
 
         public async void AddType(string work, string userId)
         {
-            TypeOfWork type = new TypeOfWork(work, userId);
-            _typeOfWorkContext.TypeOfWorks.Add(type);
+            WorksList type = new WorksList(work, userId);
+            _typeOfWorkContext.WorksList.Add(type);
             await _typeOfWorkContext.SaveChangesAsync(CancellationToken.None);
         }
 
         public async void RemoveAllByUserId()
         {
-            var work = await _typeOfWorkContext.TypeOfWorks
+            var work = await _typeOfWorkContext.WorksList
                 .Where(e => e.Id > 0).ToListAsync(CancellationToken.None);
-            _typeOfWorkContext.TypeOfWorks.RemoveRange(work);
+            _typeOfWorkContext.WorksList.RemoveRange(work);
             await _typeOfWorkContext.SaveChangesAsync(CancellationToken.None);
         }
         public async void RemoveById(int id)
         {
-            var work = await _typeOfWorkContext.TypeOfWorks
+            var work = await _typeOfWorkContext.WorksList
                 .Where(t => t.Id == id)
                 .FirstOrDefaultAsync() ?? throw new ArgumentNullException(nameof(id));
-            _typeOfWorkContext.TypeOfWorks.Remove(work);
+            _typeOfWorkContext.WorksList.Remove(work);
             await _typeOfWorkContext.SaveChangesAsync(CancellationToken.None);
         }
         

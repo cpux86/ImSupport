@@ -25,9 +25,9 @@ namespace AppCore.Models
         public string? Description { get; set; }
         public byte CaseStatusCode { get; private set; }
         /// <summary>
-        /// Описание проделанной работы
+        /// Перечень проделанных работ
         /// </summary>
-        public  List<TypeOfWork> TypeOfWorks { get; set; }
+        public  List<WorksList> WorksList { get; set; }
         /// <summary>
         /// Устройство подлежащее обслуживанию или ремонту
         /// </summary>

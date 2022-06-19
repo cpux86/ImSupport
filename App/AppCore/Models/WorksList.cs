@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppCore.Models
 {
-    public class TypeOfWork
+    public class WorksList
     {
         public  int Id { get; set; }
         public string Title { get; set; }
@@ -14,7 +14,7 @@ namespace AppCore.Models
         
         public  List<Case> Cases { get; set; }
 
-        public TypeOfWork(string title, string userId)
+        public WorksList(string title, string userId)
         {
             Title = title;
             UserId = userId;

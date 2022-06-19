@@ -21,8 +21,8 @@ namespace AppServices
             {
                 Description = description
             };
-            TypeOfWork work = new TypeOfWork("Замена термопасты", "10");
-            newCase.TypeOfWorks = new List<TypeOfWork> { work };
+            WorksList work = new WorksList("Замена термопасты", "10");
+            newCase.WorksList = new List<WorksList> { work };
             _context.Cases?.Add(newCase);
 
             await _context.SaveChangesAsync(CancellationToken.None);
