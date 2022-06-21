@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    [Migration("20220609202425_Init15")]
-    partial class Init15
+    [Migration("20220621084639_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,11 +58,20 @@ namespace Data.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
+                    b.Property<string>("WorksList")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("WorksListId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
 
                     b.HasIndex("LocationId");
+
+                    b.HasIndex("WorksListId");
 
                     b.ToTable("Cases");
                 });
@@ -105,7 +114,7 @@ namespace Data.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("AppCore.Models.TypeOfWork", b =>
+            modelBuilder.Entity("AppCore.Models.WorksList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,22 +130,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfWork");
-                });
-
-            modelBuilder.Entity("CaseTypeOfWork", b =>
-                {
-                    b.Property<int>("CasesId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TypeOfWorksId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("CasesId", "TypeOfWorksId");
-
-                    b.HasIndex("TypeOfWorksId");
-
-                    b.ToTable("CaseTypeOfWork");
+                    b.ToTable("WorksList");
                 });
 
             modelBuilder.Entity("AppCore.Models.Case", b =>
@@ -148,6 +142,10 @@ namespace Data.Migrations
                     b.HasOne("AppCore.Models.Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId");
+
+                    b.HasOne("AppCore.Models.WorksList", null)
+                        .WithMany("Cases")
+                        .HasForeignKey("WorksListId");
 
                     b.Navigation("Device");
 
@@ -163,21 +161,6 @@ namespace Data.Migrations
                     b.Navigation("Location");
                 });
 
-            modelBuilder.Entity("CaseTypeOfWork", b =>
-                {
-                    b.HasOne("AppCore.Models.Case", null)
-                        .WithMany()
-                        .HasForeignKey("CasesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AppCore.Models.TypeOfWork", null)
-                        .WithMany()
-                        .HasForeignKey("TypeOfWorksId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("AppCore.Models.Device", b =>
                 {
                     b.Navigation("Cases");
@@ -186,6 +169,11 @@ namespace Data.Migrations
             modelBuilder.Entity("AppCore.Models.Location", b =>
                 {
                     b.Navigation("Devices");
+                });
+
+            modelBuilder.Entity("AppCore.Models.WorksList", b =>
+                {
+                    b.Navigation("Cases");
                 });
 #pragma warning restore 612, 618
         }

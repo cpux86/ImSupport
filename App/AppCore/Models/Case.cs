@@ -4,7 +4,7 @@ namespace AppCore.Models
 {
     public class Case
     {
-        private enum Status
+        public enum Status : byte
         {
             Proccesing = 1,
             Running = 2,
@@ -24,10 +24,12 @@ namespace AppCore.Models
         /// </summary>
         public string? Description { get; set; }
         public byte CaseStatusCode { get; private set; }
+
         /// <summary>
         /// Перечень проделанных работ
         /// </summary>
-        public  List<WorksList> WorksList { get; set; }
+        //public  List<WorksList> WorksList { get; set; }
+        public string? WorksList { get; set; } = string.Empty;
         /// <summary>
         /// Устройство подлежащее обслуживанию или ремонту
         /// </summary>
@@ -41,11 +43,16 @@ namespace AppCore.Models
         /// <summary>
         /// Исполнитель(и)
         /// </summary>
-        public string Executor { get; private set; } = String.Empty;
+        public string Master { get; private set; } = string.Empty;
         /// <summary>
         /// Заказчик 
         /// </summary>
-        public string Client { get; private set; } = String.Empty;
+        public string Client { get; private set; } = string.Empty;
+
+        /// <summary>
+        /// кто закрыл
+        /// </summary>
+        public string? CaseManager { get; set; } = string.Empty;
         public DateTimeOffset CreatedDate { get; private set; }
         public  DateTimeOffset ModifiedDate  { get; set; }
 
@@ -65,8 +72,15 @@ namespace AppCore.Models
             CreatedDate = dateTime;
             ModifiedDate = dateTime;
             DeviceId = deviceId;
-            LocationId = 1;
+            LocationId = 1; //test
         }
 
+        public void CloseCase(string worksList, DateTimeOffset dateClosed, string caseManager)
+        {
+            this.CaseStatusCode = (byte)Status.Done;
+            this.WorksList = worksList;
+            this.ModifiedDate = dateClosed;
+            this.CaseManager = caseManager;
+        }
     }
 }

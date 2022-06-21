@@ -1,5 +1,6 @@
 ﻿using AppCore.Interfaces;
 using AppCore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppServices
 {
@@ -14,17 +15,22 @@ namespace AppServices
 
         public async void AddCase(string title, string? description, string client, int? deviceId)
         {
-            //CaseDescription caseDescription = new CaseDescription();
-            //caseDescription.Description = description;
-
             var newCase = new Case(title, client, deviceId, DateTimeOffset.Now)
             {
                 Description = description
             };
-            WorksList work = new WorksList("Замена термопасты", "10");
-            newCase.WorksList = new List<WorksList> { work };
+
             _context.Cases?.Add(newCase);
 
+            await _context.SaveChangesAsync(CancellationToken.None);
+        }
+
+        public async void CloseCase(int caseId ,string workName, string caseManager)
+        {
+            var c = await _context.Cases
+                .Where(c => c.Id == caseId && c.CaseStatusCode != (byte)Case.Status.Done)
+                .FirstOrDefaultAsync(CancellationToken.None) ?? throw new Exception("bad request");
+            c?.CloseCase(workName,DateTimeOffset.Now, caseManager);
             await _context.SaveChangesAsync(CancellationToken.None);
         }
     }

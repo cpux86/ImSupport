@@ -3,6 +3,7 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    partial class ProblemContextModelSnapshot : ModelSnapshot
+    [Migration("20220621124933_Init3")]
+    partial class Init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -23,6 +25,9 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(0);
+
+                    b.Property<string>("CaseManager")
+                        .HasColumnType("TEXT");
 
                     b.Property<byte>("CaseStatusCode")
                         .HasColumnType("INTEGER")
@@ -41,12 +46,12 @@ namespace Data.Migrations
                     b.Property<int?>("DeviceId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Executor")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<int?>("LocationId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Master")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("TEXT");
@@ -55,6 +60,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
+
+                    b.Property<string>("WorksList")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -122,21 +130,6 @@ namespace Data.Migrations
                     b.ToTable("WorksList");
                 });
 
-            modelBuilder.Entity("CaseWorksList", b =>
-                {
-                    b.Property<int>("CasesId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WorksListId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("CasesId", "WorksListId");
-
-                    b.HasIndex("WorksListId");
-
-                    b.ToTable("CaseWorksList");
-                });
-
             modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
                     b.HasOne("AppCore.Models.Device", "Device")
@@ -159,21 +152,6 @@ namespace Data.Migrations
                         .HasForeignKey("LocationId");
 
                     b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("CaseWorksList", b =>
-                {
-                    b.HasOne("AppCore.Models.Case", null)
-                        .WithMany()
-                        .HasForeignKey("CasesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AppCore.Models.WorksList", null)
-                        .WithMany()
-                        .HasForeignKey("WorksListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AppCore.Models.Device", b =>

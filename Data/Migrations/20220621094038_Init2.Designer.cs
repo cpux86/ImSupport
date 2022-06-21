@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    [Migration("20220609060701_Init2")]
+    [Migration("20220621094038_Init2")]
     partial class Init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,10 +21,13 @@ namespace Data.Migrations
 
             modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
-                    b.Property<int>("CaseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(0);
+
+                    b.Property<string>("CaseManager")
+                        .HasColumnType("TEXT");
 
                     b.Property<byte>("CaseStatusCode")
                         .HasColumnType("INTEGER")
@@ -50,10 +53,6 @@ namespace Data.Migrations
                     b.Property<int?>("LocationId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CaseDoneComment")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("TEXT");
 
@@ -62,7 +61,10 @@ namespace Data.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
-                    b.HasKey("CaseId");
+                    b.Property<string>("WorksList")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
 
@@ -107,6 +109,25 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("AppCore.Models.WorksList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorksList");
                 });
 
             modelBuilder.Entity("AppCore.Models.Case", b =>

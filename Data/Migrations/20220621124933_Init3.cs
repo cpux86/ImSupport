@@ -4,22 +4,22 @@
 
 namespace Data.Migrations
 {
-    public partial class Init4 : Migration
+    public partial class Init3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "CaseDoneComment",
+                name: "Executor",
                 table: "Cases",
-                newName: "WorkDoneDescription");
+                newName: "Master");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "WorkDoneDescription",
+                name: "Master",
                 table: "Cases",
-                newName: "CaseDoneComment");
+                newName: "Executor");
         }
     }
 }

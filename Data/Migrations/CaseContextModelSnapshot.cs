@@ -3,7 +3,6 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,20 +10,22 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    [Migration("20220609201247_Init11")]
-    partial class Init11
+    partial class CaseContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
 
             modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
-                    b.Property<int>("CaseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(0);
+
+                    b.Property<string>("CaseManager")
+                        .HasColumnType("TEXT");
 
                     b.Property<byte>("CaseStatusCode")
                         .HasColumnType("INTEGER")
@@ -43,12 +44,12 @@ namespace Data.Migrations
                     b.Property<int?>("DeviceId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Executor")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<int?>("LocationId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Master")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("TEXT");
@@ -58,7 +59,10 @@ namespace Data.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
-                    b.HasKey("CaseId");
+                    b.Property<string>("WorksList")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("DeviceId");
 
@@ -105,7 +109,7 @@ namespace Data.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("AppCore.Models.TypeOfWork", b =>
+            modelBuilder.Entity("AppCore.Models.WorksList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,22 +125,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfWork");
-                });
-
-            modelBuilder.Entity("CaseTypeOfWork", b =>
-                {
-                    b.Property<int>("CasesCaseId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WorkDoneDescriptionListId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("CasesCaseId", "WorkDoneDescriptionListId");
-
-                    b.HasIndex("WorkDoneDescriptionListId");
-
-                    b.ToTable("CaseTypeOfWork");
+                    b.ToTable("WorksList");
                 });
 
             modelBuilder.Entity("AppCore.Models.Case", b =>
@@ -161,21 +150,6 @@ namespace Data.Migrations
                         .HasForeignKey("LocationId");
 
                     b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("CaseTypeOfWork", b =>
-                {
-                    b.HasOne("AppCore.Models.Case", null)
-                        .WithMany()
-                        .HasForeignKey("CasesCaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AppCore.Models.TypeOfWork", null)
-                        .WithMany()
-                        .HasForeignKey("WorkDoneDescriptionListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AppCore.Models.Device", b =>

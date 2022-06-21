@@ -54,5 +54,16 @@ namespace AppServicesTests
             WorkService services = new WorkService(new CaseContext(options));
             services.RemoveAllByUserId();
         }
+        [Theory]
+        [InlineData(1,"замена термопасты", "Каськов В.В")]
+        [InlineData(2, "настройка программы", "Каськов В.В")]
+        public void CloseCase(int caseId, string workName, string caseManager)
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+                .Options;
+            CaseServices services = new CaseServices(new CaseContext(options));
+            services.CloseCase(caseId, workName,caseManager);
+        }
     }
 }

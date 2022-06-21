@@ -15,11 +15,25 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<int>(type: "INTEGER", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorksList",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false),
+                    UserId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorksList", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,17 +62,17 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CaseNumber = table.Column<int>(type: "INTEGER", nullable: true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<byte>(type: "INTEGER", nullable: false),
-                    Message = table.Column<string>(type: "TEXT", nullable: false),
+                    WorksList = table.Column<string>(type: "TEXT", nullable: false),
                     DeviceId = table.Column<int>(type: "INTEGER", nullable: true),
                     LocationId = table.Column<int>(type: "INTEGER", nullable: true),
                     Executor = table.Column<string>(type: "TEXT", nullable: false),
                     Client = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
-                    ModifiedDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    WorksListId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,6 +87,11 @@ namespace Data.Migrations
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Cases_WorksList_WorksListId",
+                        column: x => x.WorksListId,
+                        principalTable: "WorksList",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -84,6 +103,11 @@ namespace Data.Migrations
                 name: "IX_Cases_LocationId",
                 table: "Cases",
                 column: "LocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cases_WorksListId",
+                table: "Cases",
+                column: "WorksListId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Devices_LocationId",
@@ -98,6 +122,9 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Devices");
+
+            migrationBuilder.DropTable(
+                name: "WorksList");
 
             migrationBuilder.DropTable(
                 name: "Locations");

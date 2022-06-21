@@ -12,7 +12,7 @@ namespace AppCore.Models
         public string Title { get; set; }
         public string UserId { get; set; }
         
-        public  List<Case> Cases { get; set; }
+        //public  List<Case> Cases { get; set; }
 
         public WorksList(string title, string userId)
         {
