@@ -64,13 +64,12 @@ namespace AppCore.Models
         /// Заказчик 
         /// </summary>
         public string Client { get; private set; } = string.Empty;
-
         /// <summary>
-        /// кто закрыл
+        /// Кто закрыл
         /// </summary>
         public string? CaseManager { get; set; } = string.Empty;
-        public DateTimeOffset CreatedDate { get; private set; }
-        public  DateTimeOffset ModifiedDate  { get; set; }
+        public DateTime CreatedDate { get; private set; }
+        public  DateTime ModifiedDate  { get; set; }
 
         //public string ServiceCenter { get; set; }   
 
@@ -79,7 +78,7 @@ namespace AppCore.Models
             string title,
             string client,
             int? deviceId,
-            DateTimeOffset dateTime
+            DateTime dateTime
             )
         {
             Title = title;
@@ -91,7 +90,7 @@ namespace AppCore.Models
             LocationId = 1; //test
         }
 
-        public void CloseCase(string worksList, DateTimeOffset dateClosed, string caseManager)
+        public void CloseCase(string worksList, DateTime dateClosed, string caseManager)
         {
             this.CaseStatusCode = (byte)Status.Done;
             this.WorksList = worksList;

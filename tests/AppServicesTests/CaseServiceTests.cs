@@ -82,7 +82,7 @@ namespace AppServicesTests
                 .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
                 .Options;
             CaseServices services = new CaseServices(new CaseContext(options));
-            var c = await services.GetRangeCases();
+            var c = await services.GetRangeCases(1,1);
         }
     }
 }

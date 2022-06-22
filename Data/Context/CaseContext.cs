@@ -14,7 +14,7 @@ namespace Data.Context
     public class CaseContext : DbContext, ICaseContext, ITypeOfWorkContext
     {
 
-        public DbSet<Case>? Cases { get; set; }
+        public DbSet<Case> Cases { get; set; }
         public DbSet<Device>? Devices { get; set; }
         public DbSet<Location>? Locations { get; set; }
         public DbSet<WorksList> WorksList { get; set; }
@@ -26,10 +26,10 @@ namespace Data.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder
-                //.UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db");
                 optionsBuilder
-                    .UseNpgsql("Host=localhost;Port=5432;Database=imSupport;Username=cpux86;Password=1AC290066F");
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db");
+                //optionsBuilder
+                //    .UseNpgsql("Host=localhost;Port=5432;Database=imSupport;Username=cpux86;Password=1AC290066F");
             }
 
             //optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
