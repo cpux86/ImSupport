@@ -26,10 +26,10 @@ namespace Data.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder
-                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db");
                 //optionsBuilder
-                //    .UseNpgsql("Host=localhost;Port=5432;Database=zion;Username=cpux86;Password=1AC290066F");
+                //.UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db");
+                optionsBuilder
+                    .UseNpgsql("Host=localhost;Port=5432;Database=imSupport;Username=cpux86;Password=1AC290066F");
             }
 
             //optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));

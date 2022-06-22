@@ -6,10 +6,26 @@ namespace AppCore.Models
     {
         public enum Status : byte
         {
-            Proccesing = 1,
+            /// <summary>
+            /// Ожидание исполнения
+            /// </summary>
+            Waiting = 1,
+            /// <summary>
+            /// В работе
+            /// </summary>
             Running = 2,
+            /// <summary>
+            /// Приостановлено
+            /// </summary>
             Stopped = 3,
-            Done = 4
+            /// <summary>
+            /// Выполнено, завершено
+            /// </summary>
+            Done = 4,
+            /// <summary>
+            /// Отменено
+            /// </summary>
+            Cancelled = 5
         }
         /// <summary>
         /// Номер заявки или дела
@@ -68,7 +84,7 @@ namespace AppCore.Models
         {
             Title = title;
             Client = client;
-            CaseStatusCode = (byte)Status.Proccesing;
+            CaseStatusCode = (byte)Status.Waiting;
             CreatedDate = dateTime;
             ModifiedDate = dateTime;
             DeviceId = deviceId;

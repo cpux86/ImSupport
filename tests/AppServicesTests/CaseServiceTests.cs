@@ -65,5 +65,24 @@ namespace AppServicesTests
             CaseServices services = new CaseServices(new CaseContext(options));
             services.CloseCase(caseId, workName,caseManager);
         }
+        [Fact]
+        public async void GetQuantityNewCases()
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+                .Options;
+            CaseServices services = new CaseServices(new CaseContext(options));
+            var allCase = await services.GetQuantityNewCasesAsync();
+        }
+
+        [Fact]
+        public async void GetRangeCases()
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+                .Options;
+            CaseServices services = new CaseServices(new CaseContext(options));
+            var c = await services.GetRangeCases();
+        }
     }
 }
