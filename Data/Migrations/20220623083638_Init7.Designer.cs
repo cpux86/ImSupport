@@ -3,6 +3,7 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    partial class CaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220623083638_Init7")]
+    partial class Init7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -54,8 +56,9 @@ namespace Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ServiceCenter")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -70,8 +73,6 @@ namespace Data.Migrations
                     b.HasIndex("ClientOfficeId");
 
                     b.HasIndex("DeviceId");
-
-                    b.HasIndex("ServiceId");
 
                     b.ToTable("Cases");
                 });
@@ -202,17 +203,9 @@ namespace Data.Migrations
                         .WithMany("Cases")
                         .HasForeignKey("DeviceId");
 
-                    b.HasOne("AppCore.Models.Office", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ClientOffice");
 
                     b.Navigation("Device");
-
-                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("AppCore.Models.Device", b =>

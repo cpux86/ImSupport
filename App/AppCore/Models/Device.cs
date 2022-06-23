@@ -9,14 +9,14 @@ namespace AppCore.Models
     public class Device : BaseEntity
     {
         public string Name { get; private set; }
-        public Location Location { get; set; }
+        public Office Office { get; set; }
         public string? Description { get; private set; }
         public List<Case>? Cases { get; private set; }
         private Device() {}
-        public Device(string name, Location location, string? description)
+        public Device(string name, Office office, string? description)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
-            Location = location;
+            Office = office;
             Description = description;
         }
 

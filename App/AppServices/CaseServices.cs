@@ -16,17 +16,23 @@ namespace AppServices
         /// Добавить новое дело
         /// </summary>
         /// <param name="title">Заголовок</param>
+        /// <param name="clientOfficeId">ID отдела клиента</param>
+        /// <param name="serviceOfficeId">ID отдела сервиса</param>
         /// <param name="description">Описание</param>
-        /// <param name="client">Клиент</param>
-        /// <param name="deviceId"></param>
-        public async void AddCase(string title, int locationId, string? description, string client)
+        /// <param name="userId">ID клиента</param>
+        /// 
+        public async void AddCase(string title, int clientOfficeId, int serviceOfficeId, string? description, string userId)
         {
-            //var device = await _context.Devices.Where(d => d.Id == deviceId).FirstOrDefaultAsync(CancellationToken.None);
-            Location location = await _context.Locations
-                .Where(l => l.Id == locationId)
+            // получаем отдел клиента
+            Office client = await _context.Offices
+                .Where(o => o.Id == clientOfficeId)
+                .FirstOrDefaultAsync(CancellationToken.None) ?? throw new Exception("Bad request");
+            // получаем отдел сервиса
+            Office service = await _context.Offices
+                .Where(o => o.Id == serviceOfficeId)
                 .FirstOrDefaultAsync(CancellationToken.None) ?? throw new Exception("Bad request");
 
-            var newCase = new Case(title, location, client, DateTime.Now)
+            Case newCase = new Case(title, client, service, userId, DateTime.Now)
             {
                 Description = description
             };

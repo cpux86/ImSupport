@@ -19,6 +19,11 @@ namespace AppCore.Models
         /// <summary>
         /// Отделы, офисы, кабинеты компании
         /// </summary>
-        public List<Office> Offices { get; private set; }   
+        public List<Office> Offices { get; private set; }
+
+        public Company(string name)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+        }     
     }
 }

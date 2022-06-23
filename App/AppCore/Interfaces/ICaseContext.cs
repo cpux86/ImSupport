@@ -12,7 +12,7 @@ namespace AppCore.Interfaces
     {
         DbSet<Case> Cases { get; set; }
         DbSet<Device> Devices { get; set; }
-        DbSet<Location> Locations { get; set; }
+        DbSet<Office> Offices { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

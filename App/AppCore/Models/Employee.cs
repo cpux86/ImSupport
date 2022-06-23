@@ -8,13 +8,6 @@ namespace AppCore.Models
 {
     public class Employee
     {
-        public Employee(string name, string surname, string phone)
-        {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Surname = surname ?? throw new ArgumentNullException(nameof(surname));
-            Phone = phone ?? throw new ArgumentNullException(nameof(phone));
-        }
-
         public Guid Id { get; private set; }
         // <summary>
         /// Имя
@@ -31,10 +24,17 @@ namespace AppCore.Models
         /// <summary>
         /// Номер рабочего телефона
         /// </summary>
-        public string WorkPhone { get; private set; }
+        public string WorkPhone { get; private set; } = string.Empty;
         /// <summary>
         /// Место работы
         /// </summary>
         public Company Company { get; private set; }
+
+        public Employee(string name, string surname, string phone)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Surname = surname ?? throw new ArgumentNullException(nameof(surname));
+            Phone = phone ?? throw new ArgumentNullException(nameof(phone));
+        }
     }
 }

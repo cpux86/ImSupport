@@ -3,6 +3,7 @@ using System;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CaseContext))]
-    partial class CaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220623082745_Init6")]
+    partial class Init6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -35,9 +37,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ClientOfficeId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
 
@@ -54,8 +53,12 @@ namespace Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ServiceId")
+                    b.Property<int>("OfficeId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ServiceCenter")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -67,11 +70,9 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientOfficeId");
-
                     b.HasIndex("DeviceId");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("OfficeId");
 
                     b.ToTable("Cases");
                 });
@@ -192,27 +193,19 @@ namespace Data.Migrations
 
             modelBuilder.Entity("AppCore.Models.Case", b =>
                 {
-                    b.HasOne("AppCore.Models.Office", "ClientOffice")
-                        .WithMany()
-                        .HasForeignKey("ClientOfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AppCore.Models.Device", "Device")
                         .WithMany("Cases")
                         .HasForeignKey("DeviceId");
 
-                    b.HasOne("AppCore.Models.Office", "Service")
+                    b.HasOne("AppCore.Models.Office", "Office")
                         .WithMany()
-                        .HasForeignKey("ServiceId")
+                        .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ClientOffice");
-
                     b.Navigation("Device");
 
-                    b.Navigation("Service");
+                    b.Navigation("Office");
                 });
 
             modelBuilder.Entity("AppCore.Models.Device", b =>

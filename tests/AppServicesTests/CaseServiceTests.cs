@@ -11,15 +11,15 @@ namespace AppServicesTests
     public class CaseServiceTests
     {
         [Theory]
-        [InlineData("Не исправность камеры", 1,"работает через раз", "Леднев И")]
-        [InlineData("Не работают камеры на УСК", 2, "работает через раз", "Горбаток Е.")]
-        public void AddCaseSuccess(string title, int location, string? description, string client)
+        [InlineData("Не исправность камеры", 1, 2,"работает через раз", "Леднев И")]
+        [InlineData("Не работают камеры на УСК", 1, 2, "работает через раз", "Горбаток Е.")]
+        public void AddCaseSuccess(string title, int clientOfficeId, int serviceOfficeId, string? description, string client)
         {
             var options = new DbContextOptionsBuilder<CaseContext>()
             .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
             .Options;
             CaseServices services = new CaseServices(new CaseContext(options));
-            services.AddCase(title, location, description, client);
+            services.AddCase(title, clientOfficeId, serviceOfficeId, description, client);
         }
 
         [Theory]

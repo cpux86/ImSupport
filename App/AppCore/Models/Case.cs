@@ -54,8 +54,8 @@ namespace AppCore.Models
         /// <summary>
         /// местоположение обслуживаемого объекта 
         /// </summary>
-        public int LocationId { get; private set; }
-        public Office Office { get; private set; }
+        public int ClientOfficeId { get; private set; }
+        public Office ClientOffice { get; private set; }
         /// <summary>
         /// Исполнитель(и)
         /// </summary>
@@ -71,20 +71,22 @@ namespace AppCore.Models
         public DateTime CreatedDate { get; private set; }
         public  DateTime ModifiedDate  { get; set; }
 
-        public string ServiceCenter { get; set; }   
+        public Office Service { get; set; }   
 
         private Case() { }
-        public Case(string title, Office office, string client, DateTime dateTime)
+        public Case(string title, Office clientOffice, Office service, string client, DateTime dateTime)
         {
             Title = title;
-            Office = office ?? throw new ArgumentNullException("не верный запрос!");
+            ClientOffice = clientOffice ?? throw new ArgumentNullException("не верный запрос!");
             Client = client;
+            Service = service;
             CaseStatusCode = (byte)Status.Waiting;
             CreatedDate = dateTime;
             ModifiedDate = dateTime;
             //Device = device;
             //DeviceId = deviceId;
             //LocationId = 1; //test
+            
         }
 
         //public Case(string title, Device? device, Location location, string client, DateTime createdDate, DateTime modifiedDate)
