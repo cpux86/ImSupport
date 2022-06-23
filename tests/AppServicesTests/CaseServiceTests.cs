@@ -1,8 +1,8 @@
 using System;
 using System.Text;
-using AppCore.Models;
-using AppServices;
-using Data.Context;
+using Domain.Models;
+using Application;
+using Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
