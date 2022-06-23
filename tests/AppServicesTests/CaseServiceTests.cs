@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using AppCore.Models;
 using AppServices;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -10,15 +11,15 @@ namespace AppServicesTests
     public class CaseServiceTests
     {
         [Theory]
-        [InlineData("Не исправность камеры", "работает через раз", "Леднев И")]
-        [InlineData("Не работают камеры на УСК", "работает через раз", "Горбаток Е.")]
-        public void AddCaseSuccess(string title, string? description, string client)
+        [InlineData("Не исправность камеры", 1,"работает через раз", "Леднев И")]
+        [InlineData("Не работают камеры на УСК", 2, "работает через раз", "Горбаток Е.")]
+        public void AddCaseSuccess(string title, int location, string? description, string client)
         {
             var options = new DbContextOptionsBuilder<CaseContext>()
             .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
             .Options;
             CaseServices services = new CaseServices(new CaseContext(options));
-            services.AddCase(title, description, client, 1);
+            services.AddCase(title, location, description, client);
         }
 
         [Theory]
@@ -35,7 +36,7 @@ namespace AppServicesTests
 
         [Theory]
         [InlineData(1)]
-        public void RemomeWorkByIdSuccess(int id)
+        public void RemoveWorkByIdSuccess(int id)
         {
             var options = new DbContextOptionsBuilder<CaseContext>()
                 .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")

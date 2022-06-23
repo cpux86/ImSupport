@@ -15,8 +15,8 @@ namespace Data.Context
     {
 
         public DbSet<Case> Cases { get; set; }
-        public DbSet<Device>? Devices { get; set; }
-        public DbSet<Location>? Locations { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<Location> Locations { get; set; }
         public DbSet<WorksList> WorksList { get; set; }
 
         //public DbSet<CaseDescription>? CaseDescriptions { get; set; }   

@@ -19,9 +19,14 @@ namespace AppServices
         /// <param name="description">Описание</param>
         /// <param name="client">Клиент</param>
         /// <param name="deviceId"></param>
-        public async void AddCase(string title, string? description, string client, int? deviceId)
+        public async void AddCase(string title, int locationId, string? description, string client)
         {
-            var newCase = new Case(title, client, deviceId, DateTime.Now)
+            //var device = await _context.Devices.Where(d => d.Id == deviceId).FirstOrDefaultAsync(CancellationToken.None);
+            Location location = await _context.Locations
+                .Where(l => l.Id == locationId)
+                .FirstOrDefaultAsync(CancellationToken.None) ?? throw new Exception("Bad request");
+
+            var newCase = new Case(title, location, client, DateTime.Now)
             {
                 Description = description
             };

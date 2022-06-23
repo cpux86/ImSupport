@@ -11,8 +11,8 @@ namespace AppCore.Interfaces
     public interface ICaseContext
     {
         DbSet<Case> Cases { get; set; }
-        DbSet<Device>? Devices { get; set; }
-        DbSet<Location>? Locations { get; set; }
+        DbSet<Device> Devices { get; set; }
+        DbSet<Location> Locations { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

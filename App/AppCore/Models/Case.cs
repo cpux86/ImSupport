@@ -54,8 +54,8 @@ namespace AppCore.Models
         /// <summary>
         /// местоположение обслуживаемого объекта 
         /// </summary>
-        public int? LocationId { get; private set; }
-        public Location? Location { get; private set; }
+        public int LocationId { get; private set; }
+        public Office Office { get; private set; }
         /// <summary>
         /// Исполнитель(и)
         /// </summary>
@@ -71,24 +71,31 @@ namespace AppCore.Models
         public DateTime CreatedDate { get; private set; }
         public  DateTime ModifiedDate  { get; set; }
 
-        //public string ServiceCenter { get; set; }   
+        public string ServiceCenter { get; set; }   
 
         private Case() { }
-        public Case(
-            string title,
-            string client,
-            int? deviceId,
-            DateTime dateTime
-            )
+        public Case(string title, Office office, string client, DateTime dateTime)
         {
             Title = title;
+            Office = office ?? throw new ArgumentNullException("не верный запрос!");
             Client = client;
             CaseStatusCode = (byte)Status.Waiting;
             CreatedDate = dateTime;
             ModifiedDate = dateTime;
-            DeviceId = deviceId;
-            LocationId = 1; //test
+            //Device = device;
+            //DeviceId = deviceId;
+            //LocationId = 1; //test
         }
+
+        //public Case(string title, Device? device, Location location, string client, DateTime createdDate, DateTime modifiedDate)
+        //{
+        //    Title = title ?? throw new ArgumentNullException(nameof(title));
+        //    Device = device;
+        //    Location = location ?? throw new ArgumentNullException(nameof(location));
+        //    Client = client ?? throw new ArgumentNullException(nameof(client));
+        //    CreatedDate = createdDate;
+        //    ModifiedDate = modifiedDate;
+        //}
 
         public void CloseCase(string worksList, DateTime dateClosed, string caseManager)
         {
