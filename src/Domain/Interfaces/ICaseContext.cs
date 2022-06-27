@@ -13,6 +13,8 @@ namespace Domain.Interfaces
         DbSet<Case> Cases { get; set; }
         DbSet<Device> Devices { get; set; }
         DbSet<Office> Offices { get; set; }
+        DbSet<Employee> Employees { get; set; }
+        DbSet<Company> Companys { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

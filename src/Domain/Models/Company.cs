@@ -15,11 +15,11 @@ namespace Domain.Models
         /// <summary>
         /// Сотрудники компании
         /// </summary>
-        public List<Employee> Employees { get; private set; }
+        public List<Employee> Employees { get; private set; } = new List<Employee>();
         /// <summary>
         /// Отделы, офисы, кабинеты компании
         /// </summary>
-        public List<Office> Offices { get; private set; }
+        public List<Office> Offices { get; private set; } = new List<Office>();
 
         public Company(string name)
         {

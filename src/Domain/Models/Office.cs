@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
+#nullable disable
     public class Office : BaseEntity
     {
         /// <summary>
@@ -15,11 +16,13 @@ namespace Domain.Models
         /// <summary>
         /// Сотрудники отдела, офиса или кабинета компании
         /// </summary>
-        public List<Employee> Employees { get; private set; }
+        public List<Employee>? Employees { get; private set; } = new List<Employee>();
         /// <summary>
         /// Оборудование отдела, офиса и кабинета
         /// </summary>
-        public List<Device> Devices { get; private set; } = new List<Device>();
+        public List<Device>? Devices { get; private set; }
+
+        public Company Company { get; private set; }
         public Office(string name)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
@@ -27,7 +30,7 @@ namespace Domain.Models
 
         public void AddEmployee(Employee employee) {
             // 
-            bool isSet = this.Employees.Any(e => e.Phone == employee.Phone);
+            bool isSet = Employees.Any(e => e.Phone == employee.Phone);
             if (isSet) throw new Exception("пользователь с таким номером существует");
 
             this.Employees.Add(employee);

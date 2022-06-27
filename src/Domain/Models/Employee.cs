@@ -8,7 +8,7 @@ namespace Domain.Models
 {
     public class Employee
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         // <summary>
         /// Имя
         /// </summary>
@@ -28,7 +28,7 @@ namespace Domain.Models
         /// <summary>
         /// Место работы
         /// </summary>
-        public Company Company { get; private set; }
+        public Company? Company { get; private set; }
 
         public Employee(string name, string surname, string phone)
         {

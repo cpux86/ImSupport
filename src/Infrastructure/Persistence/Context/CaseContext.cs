@@ -18,6 +18,8 @@ namespace Persistence.Context
         public DbSet<Device> Devices { get; set; }
         public DbSet<Office> Offices { get; set; }
         public DbSet<WorksList> WorksList { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Company> Companys { get; set; }
 
         //public DbSet<CaseDescription>? CaseDescriptions { get; set; }   
         public CaseContext() {}
@@ -34,7 +36,7 @@ namespace Persistence.Context
 
             //optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
             //Console.Clear();
-            //optionsBuilder.LogTo(message => Console.WriteLine(message), Microsoft.Extensions.Logging.LogLevel.Information);
+            optionsBuilder.LogTo(message => File.AppendAllText(".\\1.txt",message), Microsoft.Extensions.Logging.LogLevel.Information);
 
         }
         protected override void OnModelCreating(ModelBuilder builder)

@@ -56,12 +56,18 @@ namespace Application
        
         public async Task<List<Case>> GetRangeCases(int start= int.MinValue, int count=30)
         {
+            List<int> x = new List<int> { 1, 2, 3,4,5,9,12 };
+
+            var cases = _context.Cases.Where(q => x.Contains(q.Id)).ToList();
+
             var caseList = await _context.Cases
-                .OrderByDescending(date=>date.CreatedDate)
+                .OrderByDescending(date => date.CreatedDate)
                 .Skip(start)
                 .Take(count)
                 .ToListAsync(CancellationToken.None);
             return caseList;
+
+
         }
         /// <summary>
         /// Закрыть дело
@@ -72,6 +78,9 @@ namespace Application
         /// <exception cref="Exception"></exception>
         public async void CloseCase(int caseId ,string workName, string caseManager)
         {
+            //Guid[] employee;
+            //List<Employee> employees = await _context.Employees.Where(e => employee.Contains(e.Id)).ToListAsync(CancellationToken.None);
+
             var c = await _context.Cases
                 .Where(c => c.Id == caseId && c.CaseStatusCode != (byte)Status.Done)
                 .FirstOrDefaultAsync(CancellationToken.None) ?? throw new ApiException("Не выполнено");
