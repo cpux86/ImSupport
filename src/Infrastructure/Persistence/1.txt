@@ -180,4 +180,611 @@ info: 28.06.2022 00:38:47.620 CoreEventId.ContextInitialized[10403] (Microsoft.E
       Applying migration '20220627222512_Init12'.info: 28.06.2022 01:25:22.209 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
       Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-      VALUES ('20220627222512_Init12', '6.0.5');
+      VALUES ('20220627222512_Init12', '6.0.5');info: 28.06.2022 15:38:35.520 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:39:48.266 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:39:48.407 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';info: 28.06.2022 15:39:48.412 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';info: 28.06.2022 15:39:48.420 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";info: 28.06.2022 15:39:48.432 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220628123835_Init13'.info: 28.06.2022 15:39:48.465 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220628123835_Init13', '6.0.5');info: 28.06.2022 15:40:53.595 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:40:56.992 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:41:05.791 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:41:15.061 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:41:15.178 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA journal_mode = 'wal';info: 28.06.2022 15:41:15.279 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+          "ProductVersion" TEXT NOT NULL
+      );info: 28.06.2022 15:41:15.299 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';info: 28.06.2022 15:41:15.304 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";info: 28.06.2022 15:41:15.318 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220621084639_Init'.info: 28.06.2022 15:41:15.347 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Locations" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Locations" PRIMARY KEY AUTOINCREMENT,
+          "Name" TEXT NOT NULL
+      );info: 28.06.2022 15:41:15.347 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "WorksList" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_WorksList" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "UserId" TEXT NOT NULL
+      );info: 28.06.2022 15:41:15.348 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Devices" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Devices" PRIMARY KEY AUTOINCREMENT,
+          "Name" TEXT NOT NULL,
+          "LocationId" INTEGER NULL,
+          "Description" TEXT NULL,
+          CONSTRAINT "FK_Devices_Locations_LocationId" FOREIGN KEY ("LocationId") REFERENCES "Locations" ("Id")
+      );info: 28.06.2022 15:41:15.348 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Cases" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cases" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "Description" TEXT NULL,
+          "Status" INTEGER NOT NULL,
+          "WorksList" TEXT NOT NULL,
+          "DeviceId" INTEGER NULL,
+          "LocationId" INTEGER NULL,
+          "Executor" TEXT NOT NULL,
+          "Client" TEXT NOT NULL,
+          "CreatedDate" TEXT NOT NULL,
+          "ModifiedDate" TEXT NOT NULL,
+          "WorksListId" INTEGER NULL,
+          CONSTRAINT "FK_Cases_Devices_DeviceId" FOREIGN KEY ("DeviceId") REFERENCES "Devices" ("Id"),
+          CONSTRAINT "FK_Cases_Locations_LocationId" FOREIGN KEY ("LocationId") REFERENCES "Locations" ("Id"),
+          CONSTRAINT "FK_Cases_WorksList_WorksListId" FOREIGN KEY ("WorksListId") REFERENCES "WorksList" ("Id")
+      );info: 28.06.2022 15:41:15.349 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_DeviceId" ON "Cases" ("DeviceId");info: 28.06.2022 15:41:15.349 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_LocationId" ON "Cases" ("LocationId");info: 28.06.2022 15:41:15.350 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_WorksListId" ON "Cases" ("WorksListId");info: 28.06.2022 15:41:15.350 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Devices_LocationId" ON "Devices" ("LocationId");info: 28.06.2022 15:41:15.351 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220621084639_Init', '6.0.5');info: 28.06.2022 15:41:15.361 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220621084930_Init1'.info: 28.06.2022 15:41:15.377 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP INDEX "IX_Cases_WorksListId";info: 28.06.2022 15:41:15.378 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Cases" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cases" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "Client" TEXT NOT NULL,
+          "CreatedDate" TEXT NOT NULL,
+          "Description" TEXT NULL,
+          "DeviceId" INTEGER NULL,
+          "Executor" TEXT NOT NULL,
+          "LocationId" INTEGER NULL,
+          "ModifiedDate" TEXT NOT NULL,
+          "Status" INTEGER NOT NULL,
+          "WorksList" TEXT NOT NULL,
+          CONSTRAINT "FK_Cases_Devices_DeviceId" FOREIGN KEY ("DeviceId") REFERENCES "Devices" ("Id"),
+          CONSTRAINT "FK_Cases_Locations_LocationId" FOREIGN KEY ("LocationId") REFERENCES "Locations" ("Id")
+      );info: 28.06.2022 15:41:15.378 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Cases" ("Id", "Client", "CreatedDate", "Description", "DeviceId", "Executor", "LocationId", "ModifiedDate", "Status", "Title", "WorksList")
+      SELECT "Id", "Client", "CreatedDate", "Description", "DeviceId", "Executor", "LocationId", "ModifiedDate", "Status", "Title", "WorksList"
+      FROM "Cases";info: 28.06.2022 15:41:15.382 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.383 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Cases";info: 28.06.2022 15:41:15.384 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Cases" RENAME TO "Cases";info: 28.06.2022 15:41:15.388 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.389 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_DeviceId" ON "Cases" ("DeviceId");info: 28.06.2022 15:41:15.389 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_LocationId" ON "Cases" ("LocationId");info: 28.06.2022 15:41:15.389 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220621084930_Init1', '6.0.5');info: 28.06.2022 15:41:15.393 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220621094038_Init2'.info: 28.06.2022 15:41:15.399 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Cases" ADD "CaseManager" TEXT NULL;info: 28.06.2022 15:41:15.400 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Cases" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cases" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "CaseManager" TEXT NULL,
+          "Client" TEXT NOT NULL,
+          "CreatedDate" TEXT NOT NULL,
+          "Description" TEXT NULL,
+          "DeviceId" INTEGER NULL,
+          "Executor" TEXT NOT NULL,
+          "LocationId" INTEGER NULL,
+          "ModifiedDate" TEXT NOT NULL,
+          "Status" INTEGER NOT NULL,
+          "WorksList" TEXT NULL,
+          CONSTRAINT "FK_Cases_Devices_DeviceId" FOREIGN KEY ("DeviceId") REFERENCES "Devices" ("Id"),
+          CONSTRAINT "FK_Cases_Locations_LocationId" FOREIGN KEY ("LocationId") REFERENCES "Locations" ("Id")
+      );info: 28.06.2022 15:41:15.400 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Cases" ("Id", "CaseManager", "Client", "CreatedDate", "Description", "DeviceId", "Executor", "LocationId", "ModifiedDate", "Status", "Title", "WorksList")
+      SELECT "Id", "CaseManager", "Client", "CreatedDate", "Description", "DeviceId", "Executor", "LocationId", "ModifiedDate", "Status", "Title", "WorksList"
+      FROM "Cases";info: 28.06.2022 15:41:15.411 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.412 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Cases";info: 28.06.2022 15:41:15.412 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Cases" RENAME TO "Cases";info: 28.06.2022 15:41:15.416 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.417 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_DeviceId" ON "Cases" ("DeviceId");info: 28.06.2022 15:41:15.417 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_LocationId" ON "Cases" ("LocationId");info: 28.06.2022 15:41:15.418 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220621094038_Init2', '6.0.5');info: 28.06.2022 15:41:15.421 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220621124933_Init3'.info: 28.06.2022 15:41:15.426 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Cases" RENAME COLUMN "Executor" TO "Master";info: 28.06.2022 15:41:15.427 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220621124933_Init3', '6.0.5');info: 28.06.2022 15:41:15.430 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220622084725_Init4'.info: 28.06.2022 15:41:15.434 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220622084725_Init4', '6.0.5');info: 28.06.2022 15:41:15.437 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220622202153_Init5'.info: 28.06.2022 15:41:15.449 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Cases" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cases" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "CaseManager" TEXT NULL,
+          "Client" TEXT NOT NULL,
+          "CreatedDate" TEXT NOT NULL,
+          "Description" TEXT NULL,
+          "DeviceId" INTEGER NULL,
+          "LocationId" INTEGER NOT NULL,
+          "Master" TEXT NOT NULL,
+          "ModifiedDate" TEXT NOT NULL,
+          "Status" INTEGER NOT NULL,
+          "WorksList" TEXT NULL,
+          CONSTRAINT "FK_Cases_Devices_DeviceId" FOREIGN KEY ("DeviceId") REFERENCES "Devices" ("Id"),
+          CONSTRAINT "FK_Cases_Locations_LocationId" FOREIGN KEY ("LocationId") REFERENCES "Locations" ("Id") ON DELETE CASCADE
+      );info: 28.06.2022 15:41:15.449 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Cases" ("Id", "CaseManager", "Client", "CreatedDate", "Description", "DeviceId", "LocationId", "Master", "ModifiedDate", "Status", "Title", "WorksList")
+      SELECT "Id", "CaseManager", "Client", "CreatedDate", "Description", "DeviceId", IFNULL("LocationId", 0), "Master", "ModifiedDate", "Status", "Title", "WorksList"
+      FROM "Cases";info: 28.06.2022 15:41:15.450 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Devices" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Devices" PRIMARY KEY AUTOINCREMENT,
+          "Description" TEXT NULL,
+          "LocationId" INTEGER NOT NULL,
+          "Name" TEXT NOT NULL,
+          CONSTRAINT "FK_Devices_Locations_LocationId" FOREIGN KEY ("LocationId") REFERENCES "Locations" ("Id") ON DELETE CASCADE
+      );info: 28.06.2022 15:41:15.450 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Devices" ("Id", "Description", "LocationId", "Name")
+      SELECT "Id", "Description", IFNULL("LocationId", 0), "Name"
+      FROM "Devices";info: 28.06.2022 15:41:15.513 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.513 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Cases";info: 28.06.2022 15:41:15.515 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Cases" RENAME TO "Cases";info: 28.06.2022 15:41:15.515 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Devices";info: 28.06.2022 15:41:15.516 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Devices" RENAME TO "Devices";info: 28.06.2022 15:41:15.521 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.522 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_DeviceId" ON "Cases" ("DeviceId");info: 28.06.2022 15:41:15.522 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_LocationId" ON "Cases" ("LocationId");info: 28.06.2022 15:41:15.523 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Devices_LocationId" ON "Devices" ("LocationId");info: 28.06.2022 15:41:15.523 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220622202153_Init5', '6.0.5');info: 28.06.2022 15:41:15.529 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220623082745_Init6'.info: 28.06.2022 15:41:15.549 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Locations";info: 28.06.2022 15:41:15.550 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Devices" RENAME COLUMN "LocationId" TO "OfficeId";info: 28.06.2022 15:41:15.550 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP INDEX "IX_Devices_LocationId";info: 28.06.2022 15:41:15.551 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Devices_OfficeId" ON "Devices" ("OfficeId");info: 28.06.2022 15:41:15.552 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Cases" RENAME COLUMN "LocationId" TO "OfficeId";info: 28.06.2022 15:41:15.552 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP INDEX "IX_Cases_LocationId";info: 28.06.2022 15:41:15.552 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_OfficeId" ON "Cases" ("OfficeId");info: 28.06.2022 15:41:15.553 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Cases" ADD "ServiceCenter" TEXT NOT NULL DEFAULT '';info: 28.06.2022 15:41:15.565 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Company" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Company" PRIMARY KEY AUTOINCREMENT,
+          "Name" TEXT NOT NULL
+      );info: 28.06.2022 15:41:15.565 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Offices" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Offices" PRIMARY KEY AUTOINCREMENT,
+          "Name" TEXT NOT NULL,
+          "CompanyId" INTEGER NULL,
+          CONSTRAINT "FK_Offices_Company_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES "Company" ("Id")
+      );info: 28.06.2022 15:41:15.566 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Employee" (
+          "Id" TEXT NOT NULL CONSTRAINT "PK_Employee" PRIMARY KEY,
+          "Name" TEXT NOT NULL,
+          "Surname" TEXT NOT NULL,
+          "Phone" TEXT NOT NULL,
+          "WorkPhone" TEXT NOT NULL,
+          "CompanyId" INTEGER NOT NULL,
+          "OfficeId" INTEGER NULL,
+          CONSTRAINT "FK_Employee_Company_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES "Company" ("Id") ON DELETE CASCADE,
+          CONSTRAINT "FK_Employee_Offices_OfficeId" FOREIGN KEY ("OfficeId") REFERENCES "Offices" ("Id")
+      );info: 28.06.2022 15:41:15.566 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employee_CompanyId" ON "Employee" ("CompanyId");info: 28.06.2022 15:41:15.567 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employee_OfficeId" ON "Employee" ("OfficeId");info: 28.06.2022 15:41:15.567 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Offices_CompanyId" ON "Offices" ("CompanyId");info: 28.06.2022 15:41:15.568 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Cases" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cases" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "CaseManager" TEXT NULL,
+          "Client" TEXT NOT NULL,
+          "CreatedDate" TEXT NOT NULL,
+          "Description" TEXT NULL,
+          "DeviceId" INTEGER NULL,
+          "Master" TEXT NOT NULL,
+          "ModifiedDate" TEXT NOT NULL,
+          "OfficeId" INTEGER NOT NULL,
+          "ServiceCenter" TEXT NOT NULL,
+          "Status" INTEGER NOT NULL,
+          "WorksList" TEXT NULL,
+          CONSTRAINT "FK_Cases_Devices_DeviceId" FOREIGN KEY ("DeviceId") REFERENCES "Devices" ("Id"),
+          CONSTRAINT "FK_Cases_Offices_OfficeId" FOREIGN KEY ("OfficeId") REFERENCES "Offices" ("Id") ON DELETE CASCADE
+      );info: 28.06.2022 15:41:15.568 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Cases" ("Id", "CaseManager", "Client", "CreatedDate", "Description", "DeviceId", "Master", "ModifiedDate", "OfficeId", "ServiceCenter", "Status", "Title", "WorksList")
+      SELECT "Id", "CaseManager", "Client", "CreatedDate", "Description", "DeviceId", "Master", "ModifiedDate", "OfficeId", "ServiceCenter", "Status", "Title", "WorksList"
+      FROM "Cases";info: 28.06.2022 15:41:15.569 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Devices" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Devices" PRIMARY KEY AUTOINCREMENT,
+          "Description" TEXT NULL,
+          "Name" TEXT NOT NULL,
+          "OfficeId" INTEGER NOT NULL,
+          CONSTRAINT "FK_Devices_Offices_OfficeId" FOREIGN KEY ("OfficeId") REFERENCES "Offices" ("Id") ON DELETE CASCADE
+      );info: 28.06.2022 15:41:15.570 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Devices" ("Id", "Description", "Name", "OfficeId")
+      SELECT "Id", "Description", "Name", "OfficeId"
+      FROM "Devices";info: 28.06.2022 15:41:15.573 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.574 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Cases";info: 28.06.2022 15:41:15.575 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Cases" RENAME TO "Cases";info: 28.06.2022 15:41:15.575 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Devices";info: 28.06.2022 15:41:15.576 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Devices" RENAME TO "Devices";info: 28.06.2022 15:41:15.580 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.589 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_DeviceId" ON "Cases" ("DeviceId");info: 28.06.2022 15:41:15.592 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_OfficeId" ON "Cases" ("OfficeId");info: 28.06.2022 15:41:15.593 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Devices_OfficeId" ON "Devices" ("OfficeId");info: 28.06.2022 15:41:15.593 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220623082745_Init6', '6.0.5');info: 28.06.2022 15:41:15.599 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220623083638_Init7'.info: 28.06.2022 15:41:15.605 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Cases" RENAME COLUMN "OfficeId" TO "ClientOfficeId";info: 28.06.2022 15:41:15.606 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP INDEX "IX_Cases_OfficeId";info: 28.06.2022 15:41:15.606 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_ClientOfficeId" ON "Cases" ("ClientOfficeId");info: 28.06.2022 15:41:15.607 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Cases" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cases" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "CaseManager" TEXT NULL,
+          "Client" TEXT NOT NULL,
+          "ClientOfficeId" INTEGER NOT NULL,
+          "CreatedDate" TEXT NOT NULL,
+          "Description" TEXT NULL,
+          "DeviceId" INTEGER NULL,
+          "Master" TEXT NOT NULL,
+          "ModifiedDate" TEXT NOT NULL,
+          "ServiceCenter" TEXT NOT NULL,
+          "Status" INTEGER NOT NULL,
+          "WorksList" TEXT NULL,
+          CONSTRAINT "FK_Cases_Devices_DeviceId" FOREIGN KEY ("DeviceId") REFERENCES "Devices" ("Id"),
+          CONSTRAINT "FK_Cases_Offices_ClientOfficeId" FOREIGN KEY ("ClientOfficeId") REFERENCES "Offices" ("Id") ON DELETE CASCADE
+      );info: 28.06.2022 15:41:15.630 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (23ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Cases" ("Id", "CaseManager", "Client", "ClientOfficeId", "CreatedDate", "Description", "DeviceId", "Master", "ModifiedDate", "ServiceCenter", "Status", "Title", "WorksList")
+      SELECT "Id", "CaseManager", "Client", "ClientOfficeId", "CreatedDate", "Description", "DeviceId", "Master", "ModifiedDate", "ServiceCenter", "Status", "Title", "WorksList"
+      FROM "Cases";info: 28.06.2022 15:41:15.637 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.641 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Cases";info: 28.06.2022 15:41:15.644 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Cases" RENAME TO "Cases";info: 28.06.2022 15:41:15.654 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.654 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_ClientOfficeId" ON "Cases" ("ClientOfficeId");info: 28.06.2022 15:41:15.654 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_DeviceId" ON "Cases" ("DeviceId");info: 28.06.2022 15:41:15.655 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220623083638_Init7', '6.0.5');info: 28.06.2022 15:41:15.658 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220623092317_Init8'.info: 28.06.2022 15:41:15.665 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Cases" ADD "ServiceId" INTEGER NOT NULL DEFAULT 0;info: 28.06.2022 15:41:15.665 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_ServiceId" ON "Cases" ("ServiceId");info: 28.06.2022 15:41:15.696 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Cases" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cases" PRIMARY KEY AUTOINCREMENT,
+          "Title" TEXT NOT NULL,
+          "CaseManager" TEXT NULL,
+          "Client" TEXT NOT NULL,
+          "ClientOfficeId" INTEGER NOT NULL,
+          "CreatedDate" TEXT NOT NULL,
+          "Description" TEXT NULL,
+          "DeviceId" INTEGER NULL,
+          "Master" TEXT NOT NULL,
+          "ModifiedDate" TEXT NOT NULL,
+          "ServiceId" INTEGER NOT NULL,
+          "Status" INTEGER NOT NULL,
+          "WorksList" TEXT NULL,
+          CONSTRAINT "FK_Cases_Devices_DeviceId" FOREIGN KEY ("DeviceId") REFERENCES "Devices" ("Id"),
+          CONSTRAINT "FK_Cases_Offices_ClientOfficeId" FOREIGN KEY ("ClientOfficeId") REFERENCES "Offices" ("Id") ON DELETE CASCADE,
+          CONSTRAINT "FK_Cases_Offices_ServiceId" FOREIGN KEY ("ServiceId") REFERENCES "Offices" ("Id") ON DELETE CASCADE
+      );info: 28.06.2022 15:41:15.700 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Cases" ("Id", "CaseManager", "Client", "ClientOfficeId", "CreatedDate", "Description", "DeviceId", "Master", "ModifiedDate", "ServiceId", "Status", "Title", "WorksList")
+      SELECT "Id", "CaseManager", "Client", "ClientOfficeId", "CreatedDate", "Description", "DeviceId", "Master", "ModifiedDate", "ServiceId", "Status", "Title", "WorksList"
+      FROM "Cases";info: 28.06.2022 15:41:15.704 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.705 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Cases";info: 28.06.2022 15:41:15.706 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Cases" RENAME TO "Cases";info: 28.06.2022 15:41:15.711 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.712 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_ClientOfficeId" ON "Cases" ("ClientOfficeId");info: 28.06.2022 15:41:15.713 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_DeviceId" ON "Cases" ("DeviceId");info: 28.06.2022 15:41:15.714 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Cases_ServiceId" ON "Cases" ("ServiceId");info: 28.06.2022 15:41:15.714 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220623092317_Init8', '6.0.5');info: 28.06.2022 15:41:15.718 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220627213847_Init9'.info: 28.06.2022 15:41:15.731 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Employee" RENAME TO "Employees";info: 28.06.2022 15:41:15.732 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP INDEX "IX_Employee_OfficeId";info: 28.06.2022 15:41:15.733 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_OfficeId" ON "Employees" ("OfficeId");info: 28.06.2022 15:41:15.733 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP INDEX "IX_Employee_CompanyId";info: 28.06.2022 15:41:15.734 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_CompanyId" ON "Employees" ("CompanyId");info: 28.06.2022 15:41:15.734 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Employees" (
+          "Id" TEXT NOT NULL CONSTRAINT "PK_Employees" PRIMARY KEY,
+          "CompanyId" INTEGER NOT NULL,
+          "LastName" TEXT NOT NULL,
+          "Name" TEXT NOT NULL,
+          "OfficeId" INTEGER NULL,
+          "Phone" TEXT NOT NULL,
+          "WorkPhone" TEXT NOT NULL,
+          CONSTRAINT "FK_Employees_Company_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES "Company" ("Id") ON DELETE CASCADE,
+          CONSTRAINT "FK_Employees_Offices_OfficeId" FOREIGN KEY ("OfficeId") REFERENCES "Offices" ("Id")
+      );info: 28.06.2022 15:41:15.735 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Employees" ("Id", "CompanyId", "LastName", "Name", "OfficeId", "Phone", "WorkPhone")
+      SELECT "Id", "CompanyId", "LastName", "Name", "OfficeId", "Phone", "WorkPhone"
+      FROM "Employees";info: 28.06.2022 15:41:15.738 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.739 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Employees";info: 28.06.2022 15:41:15.740 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Employees" RENAME TO "Employees";info: 28.06.2022 15:41:15.744 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.744 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_CompanyId" ON "Employees" ("CompanyId");info: 28.06.2022 15:41:15.745 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_OfficeId" ON "Employees" ("OfficeId");info: 28.06.2022 15:41:15.745 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220627213847_Init9', '6.0.5');info: 28.06.2022 15:41:15.750 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220627214206_Init10'.info: 28.06.2022 15:41:15.757 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Employees" (
+          "Id" TEXT NOT NULL CONSTRAINT "PK_Employees" PRIMARY KEY,
+          "CompanyId" INTEGER NULL,
+          "LastName" TEXT NOT NULL,
+          "Name" TEXT NOT NULL,
+          "OfficeId" INTEGER NULL,
+          "Phone" TEXT NOT NULL,
+          "WorkPhone" TEXT NOT NULL,
+          CONSTRAINT "FK_Employees_Company_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES "Company" ("Id"),
+          CONSTRAINT "FK_Employees_Offices_OfficeId" FOREIGN KEY ("OfficeId") REFERENCES "Offices" ("Id")
+      );info: 28.06.2022 15:41:15.757 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Employees" ("Id", "CompanyId", "LastName", "Name", "OfficeId", "Phone", "WorkPhone")
+      SELECT "Id", "CompanyId", "LastName", "Name", "OfficeId", "Phone", "WorkPhone"
+      FROM "Employees";info: 28.06.2022 15:41:15.761 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.761 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Employees";info: 28.06.2022 15:41:15.762 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Employees" RENAME TO "Employees";info: 28.06.2022 15:41:15.766 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.767 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_CompanyId" ON "Employees" ("CompanyId");info: 28.06.2022 15:41:15.768 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_OfficeId" ON "Employees" ("OfficeId");info: 28.06.2022 15:41:15.768 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220627214206_Init10', '6.0.5');info: 28.06.2022 15:41:15.772 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220627221544_Init11'.info: 28.06.2022 15:41:15.778 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Company" RENAME TO "Companys";info: 28.06.2022 15:41:15.779 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Employees" (
+          "Id" TEXT NOT NULL CONSTRAINT "PK_Employees" PRIMARY KEY,
+          "CompanyId" INTEGER NULL,
+          "LastName" TEXT NOT NULL,
+          "Name" TEXT NOT NULL,
+          "OfficeId" INTEGER NULL,
+          "Phone" TEXT NOT NULL,
+          "WorkPhone" TEXT NOT NULL,
+          CONSTRAINT "FK_Employees_Companys_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES "Companys" ("Id"),
+          CONSTRAINT "FK_Employees_Offices_OfficeId" FOREIGN KEY ("OfficeId") REFERENCES "Offices" ("Id")
+      );info: 28.06.2022 15:41:15.779 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Employees" ("Id", "CompanyId", "LastName", "Name", "OfficeId", "Phone", "WorkPhone")
+      SELECT "Id", "CompanyId", "LastName", "Name", "OfficeId", "Phone", "WorkPhone"
+      FROM "Employees";info: 28.06.2022 15:41:15.780 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Offices" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Offices" PRIMARY KEY AUTOINCREMENT,
+          "CompanyId" INTEGER NULL,
+          "Name" TEXT NULL,
+          CONSTRAINT "FK_Offices_Companys_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES "Companys" ("Id")
+      );info: 28.06.2022 15:41:15.796 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Offices" ("Id", "CompanyId", "Name")
+      SELECT "Id", "CompanyId", "Name"
+      FROM "Offices";info: 28.06.2022 15:41:15.797 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Companys" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Companys" PRIMARY KEY AUTOINCREMENT,
+          "Name" TEXT NOT NULL
+      );info: 28.06.2022 15:41:15.798 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Companys" ("Id", "Name")
+      SELECT "Id", "Name"
+      FROM "Companys";info: 28.06.2022 15:41:15.802 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 15:41:15.802 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Employees";info: 28.06.2022 15:41:15.803 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Employees" RENAME TO "Employees";info: 28.06.2022 15:41:15.804 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Offices";info: 28.06.2022 15:41:15.805 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Offices" RENAME TO "Offices";info: 28.06.2022 15:41:15.805 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Companys";info: 28.06.2022 15:41:15.806 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Companys" RENAME TO "Companys";info: 28.06.2022 15:41:15.809 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 15:41:15.810 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_CompanyId" ON "Employees" ("CompanyId");info: 28.06.2022 15:41:15.811 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Employees_OfficeId" ON "Employees" ("OfficeId");info: 28.06.2022 15:41:15.812 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Offices_CompanyId" ON "Offices" ("CompanyId");info: 28.06.2022 15:41:15.812 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220627221544_Init11', '6.0.5');info: 28.06.2022 15:41:15.816 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220627222512_Init12'.info: 28.06.2022 15:41:15.821 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220627222512_Init12', '6.0.5');info: 28.06.2022 15:41:15.824 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220628123835_Init13'.info: 28.06.2022 15:41:15.830 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220628123835_Init13', '6.0.5');info: 28.06.2022 15:55:28.243 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:55:34.124 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 15:55:34.234 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';info: 28.06.2022 15:55:34.239 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';info: 28.06.2022 15:55:34.248 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";info: 28.06.2022 15:55:34.261 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220628125528_Init14'.info: 28.06.2022 15:55:34.299 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "Companys" ADD "INN" TEXT NOT NULL DEFAULT '';info: 28.06.2022 15:55:34.299 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220628125528_Init14', '6.0.5');info: 28.06.2022 16:13:27.425 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 16:13:31.912 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.5 initialized 'CaseContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: Noneinfo: 28.06.2022 16:13:32.007 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';info: 28.06.2022 16:13:32.013 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';info: 28.06.2022 16:13:32.020 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";info: 28.06.2022 16:13:32.033 RelationalEventId.MigrationApplying[20402] (Microsoft.EntityFrameworkCore.Migrations) 
+      Applying migration '20220628131327_Init15'.info: 28.06.2022 16:13:32.081 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "ef_temp_Companys" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Companys" PRIMARY KEY AUTOINCREMENT,
+          "INN" TEXT NULL,
+          "Name" TEXT NOT NULL
+      );info: 28.06.2022 16:13:32.081 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "ef_temp_Companys" ("Id", "INN", "Name")
+      SELECT "Id", "INN", "Name"
+      FROM "Companys";info: 28.06.2022 16:13:32.088 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 0;info: 28.06.2022 16:13:32.089 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE "Companys";info: 28.06.2022 16:13:32.091 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE "ef_temp_Companys" RENAME TO "Companys";info: 28.06.2022 16:13:32.095 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA foreign_keys = 1;info: 28.06.2022 16:13:32.096 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20220628131327_Init15', '6.0.5');

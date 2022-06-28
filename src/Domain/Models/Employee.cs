@@ -8,7 +8,7 @@ namespace Domain.Models
 {
     public class Employee
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         // <summary>
         /// Имя
         /// </summary>
@@ -16,7 +16,7 @@ namespace Domain.Models
         /// <summary>
         /// Фамилия
         /// </summary>
-        public string Surname { get; private set; }      
+        public string LastName { get; private set; }      
         /// <summary>
         /// Номер мобильного телефона
         /// </summary>
@@ -29,12 +29,14 @@ namespace Domain.Models
         /// Место работы
         /// </summary>
         public Company? Company { get; private set; }
-
+        private Employee() { }
         public Employee(string name, string surname, string phone)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
-            Surname = surname ?? throw new ArgumentNullException(nameof(surname));
+            LastName = surname ?? throw new ArgumentNullException(nameof(surname));
             Phone = phone ?? throw new ArgumentNullException(nameof(phone));
         }
+
+
     }
 }

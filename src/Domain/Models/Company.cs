@@ -13,6 +13,10 @@ namespace Domain.Models
         /// </summary>
         public string Name { get; private set; }
         /// <summary>
+        /// ИНН компании
+        /// </summary>
+        public string? INN { get; private set; }
+        /// <summary>
         /// Сотрудники компании
         /// </summary>
         public List<Employee> Employees { get; private set; } = new List<Employee>();

@@ -49,6 +49,15 @@ namespace AppServicesTests
             CompanyService service = new CompanyService(new CaseContext(options));
             service.AddEmployee(name, surname, phone, companyId);
         }
+        [Fact]
+        public void GetCompanyList()
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+            .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+            .Options;
+            CompanyService service = new CompanyService(new CaseContext(options));
+            var companyList = service.GetCompanyList();
+        }
 
 
     }

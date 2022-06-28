@@ -20,6 +20,7 @@ namespace Application
         public async void AddEmployee(string name, string surname, string phone)
         {
             var user = new Employee(name, surname, phone);
+            
             _context.Employees.Add(user);
             await _context.SaveChangesAsync(CancellationToken.None);
         }
