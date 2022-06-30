@@ -8,12 +8,17 @@ namespace Application
 {
     public class CaseServices
     {
+        #region Fields
         private readonly ICaseContext _context;
-
+        #endregion
+        #region Ctor
         public CaseServices(ICaseContext context)
         {
             _context = context;
         }
+        #endregion
+        #region Methods
+
         /// <summary>
         /// Добавить новое дело
         /// </summary>
@@ -53,10 +58,10 @@ namespace Application
                 .CountAsync(c => c.CaseStatusCode == (byte)Status.Waiting);
             return count;
         }
-       
-        public async Task<List<Case>> GetRangeCases(int start= int.MinValue, int count=30)
+
+        public async Task<List<Case>> GetRangeCases(int start = int.MinValue, int count = 30)
         {
-            List<int> x = new List<int> { 1, 2, 3,4,5,9,12 };
+            List<int> x = new List<int> { 1, 2, 3, 4, 5, 9, 12 };
 
             var cases = _context.Cases.Where(q => x.Contains(q.Id)).ToList();
 
@@ -76,7 +81,7 @@ namespace Application
         /// <param name="workName">Перечень проделанных работ</param>
         /// <param name="caseManager">Сотрудник закрывший дело</param>
         /// <exception cref="Exception"></exception>
-        public async void CloseCase(int caseId ,string workName, string caseManager)
+        public async void CloseCase(int caseId, string workName, string caseManager)
         {
             //Guid[] employee;
             //List<Employee> employees = await _context.Employees.Where(e => employee.Contains(e.Id)).ToListAsync(CancellationToken.None);
@@ -84,8 +89,10 @@ namespace Application
             var c = await _context.Cases
                 .Where(c => c.Id == caseId && c.CaseStatusCode != (byte)Status.Done)
                 .FirstOrDefaultAsync(CancellationToken.None) ?? throw new ApiException("Не выполнено");
-            c?.CloseCase(workName,DateTime.Now, caseManager);
+            c?.CloseCase(workName, DateTime.Now, caseManager);
             await _context.SaveChangesAsync(CancellationToken.None);
         }
+
+        #endregion
     }
 }
