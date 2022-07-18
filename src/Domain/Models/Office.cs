@@ -16,7 +16,7 @@ namespace Domain.Models
         /// <summary>
         /// Сотрудники отдела, офиса или кабинета компании
         /// </summary>
-        public List<Employee>? Employees { get; private set; } = new List<Employee>();
+        public List<Employee> Employees { get; private set; } = new List<Employee>();
         /// <summary>
         /// Оборудование отдела, офиса и кабинета
         /// </summary>

@@ -85,5 +85,18 @@ namespace AppServicesTests
             CaseServices services = new CaseServices(new CaseContext(options));
             var c = await services.GetRangeCases(1,1);
         }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(5)]
+        public async void GetCasesByOfficeId(int officeId)
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+                .Options;
+            CaseServices services = new CaseServices(new CaseContext(options));
+            var c = await services.GetCasesByOfficeId(officeId);
+        }
     }
 }

@@ -3,6 +3,8 @@ using Domain.Enum;
 using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Ardalis.Specification.EntityFrameworkCore;
+using Application.Specifications;
 
 namespace Application
 {
@@ -72,8 +74,27 @@ namespace Application
                 .ToListAsync(CancellationToken.None);
             return caseList;
 
-
         }
+
+        /// <summary>
+        /// Получить список дел по номеру отдела
+        /// </summary>
+        /// <param name="officeId"></param>
+        /// <param name="start"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public async Task<List<Case>> GetCasesByOfficeId(int officeId, int start = 1, int count = 30)
+        {
+            var caseList = await _context.Cases
+                .WithSpecification(new CaseListByOfficeIdSpec(officeId))
+                //.Where(c=>c.Service.Id == officeId)
+                //.OrderByDescending(date => date.CreatedDate)
+                //.Skip(start)
+                //.Take(count)
+                .ToListAsync(CancellationToken.None);
+            return caseList;
+        }    
+
         /// <summary>
         /// Закрыть дело
         /// </summary>
