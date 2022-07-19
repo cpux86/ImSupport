@@ -24,11 +24,28 @@ namespace Domain.Models
         /// <summary>
         /// Номер рабочего телефона
         /// </summary>
-        public string WorkPhone { get; private set; } = string.Empty;
+        public string? WorkPhone { get; private set; }
+        /// <summary>
+        /// Должность
+        /// </summary>
+        public string Post { get; private set; } = string.Empty;
         /// <summary>
         /// Место работы
         /// </summary>
-        public Company? Company { get; private set; }
+        public Company Company { get; private set; }
+
+        /// <summary>
+        /// Отдел в котором работает сотрудник 
+        /// </summary>
+        public Department? Department{ get; private set; }
+        // <summary>
+        /// Офис в котором работает сотрудник 
+        /// </summary>
+        public Office? Office{ get; private set; }
+        /// <summary>
+        /// Подчиненные отделы
+        /// </summary>
+        public IEnumerable<Department> SlaveOffices { get; private set; }
         private Employee() { }
         public Employee(string name, string surname, string phone)
         {

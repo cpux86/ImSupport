@@ -4,22 +4,22 @@
 
 namespace Persistence.Migrations
 {
-    public partial class Init3 : Migration
+    public partial class Init5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "Executor",
-                table: "Cases",
-                newName: "Master");
+                name: "name",
+                table: "Departments",
+                newName: "Name");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "Master",
-                table: "Cases",
-                newName: "Executor");
+                name: "Name",
+                table: "Departments",
+                newName: "name");
         }
     }
 }

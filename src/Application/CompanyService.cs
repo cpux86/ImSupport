@@ -38,7 +38,7 @@ namespace Application
         {
             Company company = await _context.Companys.Where(x => x.Id == companyId)
                 .FirstOrDefaultAsync(CancellationToken.None);
-            Office newOffice = new Office(name);
+            Department newOffice = new Department(name);
             company.Offices.Add(newOffice);
             await _context.SaveChangesAsync(CancellationToken.None);
         }
@@ -52,14 +52,14 @@ namespace Application
         /// <exception cref="ArgumentNullException"></exception>
         public async void AddEmployee(string name, string surname, string phone, int companyId)
         {
-            Company company = await _context.Companys
-                .FirstOrDefaultAsync(c => c.Id == companyId) ?? throw new ArgumentNullException(nameof(company));
-            var isSet = _context.Employees
-                .Where(x => x.Company.Id == companyId && x.Phone == phone)
-                .Any();
-            if (isSet) throw new BadRequestException("Пользователь существует");
-            Employee user = new Employee(name, surname, phone);
-            company.Employees.Add(user);
+            //Company company = await _context.Companys
+            //    .FirstOrDefaultAsync(c => c.Id == companyId) ?? throw new ArgumentNullException(nameof(company));
+            //var isSet = _context.Employees
+            //    .Where(x => x.Company.Id == companyId && x.Phone == phone)
+            //    .Any();
+            //if (isSet) throw new BadRequestException("Пользователь существует");
+            //Employee user = new Employee(name, surname, phone);
+            //company.Employees.Add(user);
             await _context.SaveChangesAsync(CancellationToken.None);
         }
 

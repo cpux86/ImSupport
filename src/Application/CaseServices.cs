@@ -33,11 +33,11 @@ namespace Application
         public async void AddCase(string title, int clientOfficeId, int serviceOfficeId, string? description, string userId)
         {
             // получаем отдел клиента
-            Office client = await _context.Offices
+            Department client = await _context.Departments
                 .Where(o => o.Id == clientOfficeId)
                 .FirstOrDefaultAsync(CancellationToken.None) ?? throw new Exception("Bad request");
             // получаем отдел сервиса
-            Office service = await _context.Offices
+            Department service = await _context.Departments
                 .Where(o => o.Id == serviceOfficeId)
                 .FirstOrDefaultAsync(CancellationToken.None) ?? throw new Exception("Bad request");
 

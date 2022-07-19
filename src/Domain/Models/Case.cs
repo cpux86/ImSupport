@@ -34,7 +34,7 @@ namespace Domain.Models
         /// местоположение обслуживаемого объекта 
         /// </summary>
         public int ClientOfficeId { get; private set; }
-        public Office ClientOffice { get; private set; }
+        public Department ClientOffice { get; private set; }
         /// <summary>
         /// Исполнитель(и)
         /// </summary>
@@ -50,10 +50,10 @@ namespace Domain.Models
         public DateTime CreatedDate { get; private set; }
         public  DateTime ModifiedDate  { get; set; }
 
-        public Office Service { get; set; }   
+        public Department Service { get; set; }   
 
         private Case() { }
-        public Case(string title, Office clientOffice, Office service, string client, DateTime dateTime)
+        public Case(string title, Department clientOffice, Department service, string client, DateTime dateTime)
         {
             Title = title;
             ClientOffice = clientOffice ?? throw new BadRequestException("Bad Request");

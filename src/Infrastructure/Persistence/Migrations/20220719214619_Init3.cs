@@ -4,15 +4,16 @@
 
 namespace Persistence.Migrations
 {
-    public partial class Init15 : Migration
+    public partial class Init3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "INN",
-                table: "Companys",
+                name: "Name",
+                table: "Departments",
                 type: "TEXT",
-                nullable: true,
+                nullable: false,
+                comment: "Имя",
                 oldClrType: typeof(string),
                 oldType: "TEXT");
         }
@@ -20,14 +21,13 @@ namespace Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "INN",
-                table: "Companys",
+                name: "Name",
+                table: "Departments",
                 type: "TEXT",
                 nullable: false,
-                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "TEXT",
-                oldNullable: true);
+                oldComment: "Имя");
         }
     }
 }

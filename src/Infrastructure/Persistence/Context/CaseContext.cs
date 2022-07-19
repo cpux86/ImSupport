@@ -16,7 +16,7 @@ namespace Persistence.Context
 
         public DbSet<Case> Cases { get; set; }
         public DbSet<Device> Devices { get; set; }
-        public DbSet<Office> Offices { get; set; }
+        public DbSet<Department> Departments { get; set; }
         public DbSet<WorksList> WorksList { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Company> Companys { get; set; }
@@ -42,6 +42,7 @@ namespace Persistence.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CaseConfiguration());
+            builder.ApplyConfiguration(new DepartmentConfiguration());
         }
     }
 }

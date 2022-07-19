@@ -9,5 +9,9 @@ namespace Application.Features.Appeals.Commands.CreateAppeal
 {
     public class CreateAppealCommand : IRequest
     {
+        /// <summary>
+        /// Заголовок заявки
+        /// </summary>
+        public string Title { get; set; }
     }
 }

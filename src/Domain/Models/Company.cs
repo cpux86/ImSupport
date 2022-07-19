@@ -23,7 +23,7 @@ namespace Domain.Models
         /// <summary>
         /// Отделы, офисы, кабинеты компании
         /// </summary>
-        public List<Office> Offices { get; private set; } = new List<Office>();
+        public List<Department> Offices { get; private set; } = new List<Department>();
 
         public Company(string name)
         {

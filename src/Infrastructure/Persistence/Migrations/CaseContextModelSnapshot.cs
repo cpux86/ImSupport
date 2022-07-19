@@ -15,7 +15,7 @@ namespace Persistence.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
 
             modelBuilder.Entity("Domain.Models.Case", b =>
                 {
@@ -94,6 +94,31 @@ namespace Persistence.Migrations
                     b.ToTable("Companys");
                 });
 
+            modelBuilder.Entity("Domain.Models.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("HeadOfDepartmentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("HeadOfDepartmentId");
+
+                    b.ToTable("Departments");
+                });
+
             modelBuilder.Entity("Domain.Models.Device", b =>
                 {
                     b.Property<int>("Id")
@@ -123,7 +148,10 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("CompanyId")
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("LastName")
@@ -141,13 +169,18 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("WorkPhone")
+                    b.Property<string>("Post")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("WorkPhone")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("OfficeId");
 
@@ -160,17 +193,23 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CompanyId")
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Offices");
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("Office");
                 });
 
             modelBuilder.Entity("Domain.Models.WorksList", b =>
@@ -194,7 +233,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.Case", b =>
                 {
-                    b.HasOne("Domain.Models.Office", "ClientOffice")
+                    b.HasOne("Domain.Models.Department", "ClientOffice")
                         .WithMany()
                         .HasForeignKey("ClientOfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -204,7 +243,7 @@ namespace Persistence.Migrations
                         .WithMany("Cases")
                         .HasForeignKey("DeviceId");
 
-                    b.HasOne("Domain.Models.Office", "Service")
+                    b.HasOne("Domain.Models.Department", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -217,9 +256,28 @@ namespace Persistence.Migrations
                     b.Navigation("Service");
                 });
 
+            modelBuilder.Entity("Domain.Models.Department", b =>
+                {
+                    b.HasOne("Domain.Models.Company", "Company")
+                        .WithMany("Offices")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Employee", "HeadOfDepartment")
+                        .WithMany("SlaveOffices")
+                        .HasForeignKey("HeadOfDepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("HeadOfDepartment");
+                });
+
             modelBuilder.Entity("Domain.Models.Device", b =>
                 {
-                    b.HasOne("Domain.Models.Office", "Office")
+                    b.HasOne("Domain.Models.Department", "Office")
                         .WithMany("Devices")
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -232,26 +290,53 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Models.Company", "Company")
                         .WithMany("Employees")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Domain.Models.Office", null)
+                    b.HasOne("Domain.Models.Department", "Department")
                         .WithMany("Employees")
+                        .HasForeignKey("DepartmentId");
+
+                    b.HasOne("Domain.Models.Office", "Office")
+                        .WithMany()
                         .HasForeignKey("OfficeId");
 
                     b.Navigation("Company");
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Office");
                 });
 
             modelBuilder.Entity("Domain.Models.Office", b =>
                 {
                     b.HasOne("Domain.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Department", "Department")
                         .WithMany("Offices")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("DepartmentId");
 
                     b.Navigation("Company");
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("Domain.Models.Company", b =>
                 {
+                    b.Navigation("Employees");
+
+                    b.Navigation("Offices");
+                });
+
+            modelBuilder.Entity("Domain.Models.Department", b =>
+                {
+                    b.Navigation("Devices");
+
                     b.Navigation("Employees");
 
                     b.Navigation("Offices");
@@ -262,11 +347,9 @@ namespace Persistence.Migrations
                     b.Navigation("Cases");
                 });
 
-            modelBuilder.Entity("Domain.Models.Office", b =>
+            modelBuilder.Entity("Domain.Models.Employee", b =>
                 {
-                    b.Navigation("Devices");
-
-                    b.Navigation("Employees");
+                    b.Navigation("SlaveOffices");
                 });
 #pragma warning restore 612, 618
         }

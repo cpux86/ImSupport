@@ -6,35 +6,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-#nullable disable
+//#nullable disable
     public class Office : BaseEntity
     {
         /// <summary>
-        /// Название отдела, офиса или номер кабинета компании
+        /// Название или номер кабинета-офиса
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; private set; } = string.Empty;
         /// <summary>
-        /// Сотрудники отдела, офиса или кабинета компании
+        /// Отдел к которому относится офис-кабинет
         /// </summary>
-        public List<Employee> Employees { get; private set; } = new List<Employee>();
-        /// <summary>
-        /// Оборудование отдела, офиса и кабинета
-        /// </summary>
-        public List<Device>? Devices { get; private set; }
-
+        public Department? Department { get; private set; }
         public Company Company { get; private set; }
-        public Office(string name)
-        {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-        }
-
-        public void AddEmployee(Employee employee) {
-            // 
-            bool isSet = Employees.Any(e => e.Phone == employee.Phone);
-            if (isSet) throw new Exception("пользователь с таким номером существует");
-
-            this.Employees.Add(employee);
-        }
-
     }
 }
