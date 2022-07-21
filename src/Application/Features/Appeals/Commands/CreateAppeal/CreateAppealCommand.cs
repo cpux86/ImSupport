@@ -12,6 +12,23 @@ namespace Application.Features.Appeals.Commands.CreateAppeal
         /// <summary>
         /// Заголовок заявки
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        /// <summary>
+        /// ID клиента
+        /// </summary>
+        public string ClientId { get; set; } = string.Empty;
+        /// <summary>
+        /// ID отдела клиента
+        /// </summary>
+        public int ClientDepartmentId { get; set; }
+        /// <summary>
+        /// ID кабинета клиента
+        /// </summary>
+        public int ClientOfficeId { get; set; }
+        /// <summary>
+        /// ID отдела адресата
+        /// </summary>
+        public int ServiceOfficeId { get; set; }
     }
 }

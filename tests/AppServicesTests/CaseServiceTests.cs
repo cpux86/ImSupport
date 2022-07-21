@@ -5,21 +5,39 @@ using Application;
 using Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using Application.Features.Appeals.Commands.CreateAppeal;
+using AppServicesTests.Common;
+using System.Threading;
 
 namespace AppServicesTests
 {
-    public class CaseServiceTests
+    public class CaseServiceTests : TestCommandBase
     {
         [Theory]
         [InlineData("Не исправность камеры", 1, 2,"работает через раз", "Леднев И")]
         [InlineData("Не работают камеры на УСК", 1, 2, "работает через раз", "Горбаток Е.")]
-        public void AddCaseSuccess(string title, int clientOfficeId, int serviceOfficeId, string? description, string client)
+        //public void AddCaseSuccess(string title, int clientOfficeId, int serviceOfficeId, string? description, string client)
+        //{
+        //    var options = new DbContextOptionsBuilder<CaseContext>()
+        //    .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+        //    .Options;
+        //    CaseServices services = new CaseServices(new CaseContext(options));
+        //    services.AddCase(title, clientOfficeId, serviceOfficeId, description, client);
+        //}
+        public async void AddCaseSuccess(string title, int clientOfficeId, int serviceOfficeId, string? description, string client)
         {
-            var options = new DbContextOptionsBuilder<CaseContext>()
-            .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
-            .Options;
-            CaseServices services = new CaseServices(new CaseContext(options));
-            services.AddCase(title, clientOfficeId, serviceOfficeId, description, client);
+            var handler = new CreateAppealCommandHandler(Context);
+            await handler.Handle(
+                new CreateAppealCommand 
+                {
+                    Title = title,
+                    ClientOfficeId = clientOfficeId,
+                    ServiceOfficeId = serviceOfficeId,
+                    Description = description,
+                    ClientId = client
+                },
+                CancellationToken.None);
+
         }
 
         [Theory]
@@ -97,6 +115,16 @@ namespace AppServicesTests
                 .Options;
             CaseServices services = new CaseServices(new CaseContext(options));
             var c = await services.GetCasesByOfficeId(officeId);
+        }
+        [Theory]
+        [InlineData(1)]
+        public async void GetCaseId(int caseId)
+        {
+            var options = new DbContextOptionsBuilder<CaseContext>()
+                .UseSqlite(@"DataSource=C:\C#\ImSupport\DB\ImSupport.db")
+                .Options;
+            CaseServices services = new CaseServices(new CaseContext(options));
+            var c = await services.GetCaseById(caseId);
         }
     }
 }

@@ -50,6 +50,13 @@ namespace Application
 
             await _context.SaveChangesAsync(CancellationToken.None);
         }
+        public async Task<Case> GetCaseById(int id)
+        {
+            var c = await _context.Cases
+                .Where(o => o.Id == id)
+                .FirstOrDefaultAsync(CancellationToken.None)?? throw new Exception("case not fount");
+            return c;
+        }
         /// <summary>
         /// Получить количество новых дел
         /// </summary>
@@ -87,6 +94,8 @@ namespace Application
         {
             var caseList = await _context.Cases
                 .WithSpecification(new CaseListByOfficeIdSpec(officeId))
+                .AsNoTracking()
+                //.AsNoTrackingWithIdentityResolution()
                 //.Where(c=>c.Service.Id == officeId)
                 //.OrderByDescending(date => date.CreatedDate)
                 //.Skip(start)
