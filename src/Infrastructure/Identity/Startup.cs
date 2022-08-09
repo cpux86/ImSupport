@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AspNetIdentity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Identity
@@ -62,7 +63,6 @@ namespace Identity
 
                 .AddInMemoryApiResources(Configuration.ApiResources)
                 .AddInMemoryIdentityResources(Configuration.IdentityResources)
-
                 .AddDeveloperSigningCredential();
 
 

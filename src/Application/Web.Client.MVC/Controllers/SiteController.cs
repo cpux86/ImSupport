@@ -17,9 +17,10 @@ namespace Web.Client.MVC.Controllers
 
         [Authorize]
         [Route("[action]")]
-        public async Task<IActionResult> SecretAsync()
+        public async Task<IActionResult> Secret()
         {
             var jsonToken = await HttpContext.GetTokenAsync("access_token");
+            var idToken = HttpContext.GetTokenAsync("id_token").GetAwaiter().GetResult();
             var token = new JwtSecurityTokenHandler().ReadJwtToken(jsonToken);
             var res = token.Subject;
             return View();

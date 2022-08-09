@@ -23,6 +23,7 @@ builder.Services.AddAuthentication(config =>
             ValidateAudience = false
         };
         config.ResponseType = "code";
+        config.GetClaimsFromUserInfoEndpoint = true;
     });
 
 
