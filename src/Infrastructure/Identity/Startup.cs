@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Identity
 {
@@ -32,30 +33,39 @@ namespace Identity
             services.AddDbContext<AuthDbContext>(options =>
             {
                 options.UseSqlite(connectionString);
+                //options.UseInMemoryDatabase("DEMO_ONLY");
             });
             services.AddIdentity<AppUser, IdentityRole>(config =>
-            {
-                config.Password.RequiredLength = 4;
-                config.Password.RequireDigit = false;
-                config.Password.RequireNonAlphanumeric = false;
-                config.Password.RequireUppercase = false;
-            })
-                .AddEntityFrameworkStores<AuthDbContext>()
-                .AddDefaultTokenProviders();
+                {
+                    config.Password.RequiredLength = 4;
+                    config.Password.RequireDigit = false;
+                    config.Password.RequireNonAlphanumeric = false;
+                    config.Password.RequireUppercase = false;
+                })
+                .AddEntityFrameworkStores<AuthDbContext>();
+                //.AddDefaultTokenProviders();
 
-            services.AddIdentityServer()
-                .AddAspNetIdentity<AppUser>()
-                .AddInMemoryApiResources(Configuration.ApiResources)
-                .AddInMemoryIdentityResources(Configuration.IdentityResources)
-                .AddInMemoryApiScopes(Configuration.ApiScopes)
-                .AddInMemoryClients(Configuration.Clients)
-                .AddDeveloperSigningCredential();
             services.ConfigureApplicationCookie(config =>
             {
                 config.Cookie.Name = "Identity.Cookie";
                 config.LoginPath = "/Auth/Login";
                 config.LogoutPath = "/Auth/Logout";
             });
+
+            services.AddIdentityServer(options =>
+                {
+                    options.UserInteraction.LoginUrl = "/Auth/Login";
+                })
+                .AddAspNetIdentity<AppUser>()
+                .AddInMemoryClients(Configuration.Clients)
+                .AddInMemoryApiScopes(Configuration.ApiScopes)
+
+                .AddInMemoryApiResources(Configuration.ApiResources)
+                .AddInMemoryIdentityResources(Configuration.IdentityResources)
+
+                .AddDeveloperSigningCredential();
+
+
 
             services.AddControllersWithViews();
         }
@@ -73,8 +83,14 @@ namespace Identity
                     Path.Combine(env.ContentRootPath,"Styles")),
                 RequestPath = "/styles"
             });
-            app.UseRouting();
+
             app.UseIdentityServer();
+
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseIdentityServer();
+
 
             app.UseEndpoints(endpoints =>
             {

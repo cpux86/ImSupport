@@ -8,27 +8,8 @@ using System.Threading.Tasks;
 
 namespace Identity
 {
-    public class Configuration
+    public static class Configuration
     {
-        public static IEnumerable<ApiScope> ApiScopes =>
-            new List<ApiScope>
-            {
-                new ApiScope("WebAPI", "Web API")
-            };
-        public static IEnumerable<IdentityResource> IdentityResources =>
-            new List<IdentityResource>
-            {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
-            };
-        public static IEnumerable<ApiResource> ApiResources =>
-            new List<ApiResource>
-            {
-                new ApiResource("WebAPI", "Web API", new [] { JwtClaimTypes.Name })
-                {
-                    Scopes = { "WebAPI"}
-                }
-            };
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {
@@ -36,7 +17,7 @@ namespace Identity
                 {
                     ClientId = "web-api",
                     ClientName = "Web",
-                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
                     RequireClientSecret = false,
                     RequirePkce = true,
                     RedirectUris =
@@ -58,7 +39,45 @@ namespace Identity
                         "WebAPI"
                     },
                     AllowAccessTokensViaBrowser = true
+                },
+                new Client
+                {
+                    ClientId = "client_id_mvc",
+                    ClientSecrets = { new Secret("client_secret_mvc".ToSha256())},
+                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowedScopes =
+                    {
+                        "WebAPI",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    },
+                    RedirectUris = { "https://localhost:5001/signin-oidc" },
+
+                    RequireConsent = false
+
                 }
-            };          
+            };
+        public static IEnumerable<ApiResource> ApiResources =>
+            new List<ApiResource>
+            {
+                new ApiResource("WebAPI", "Web API", new [] { JwtClaimTypes.Name})
+                {
+                    Scopes = { "WebAPI"}
+                }
+            };
+
+        public static IEnumerable<ApiScope> ApiScopes =>
+            new List<ApiScope>
+            {
+                new ApiScope("WebAPI", "Web API")
+            };
+        public static IEnumerable<IdentityResource> IdentityResources =>
+            new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile()
+            };
+
+        
     }
 }

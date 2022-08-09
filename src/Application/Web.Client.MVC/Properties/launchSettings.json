@@ -1,11 +1,11 @@
 ﻿{
   "profiles": {
-    "Identity": {
+    "Web.Client.MVC": {
       "commandName": "Project",
-      "dotnetRunMessages": "true",
+      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "auth/login", 
-      "applicationUrl": "https://localhost:8001;http://localhost:8000",
+      "launchUrl": "site/index",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

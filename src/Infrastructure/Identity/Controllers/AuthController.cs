@@ -1,8 +1,14 @@
-﻿using Identity.Modeles;
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using Identity.Modeles;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Identity.Controllers
 {
@@ -35,12 +41,12 @@ namespace Identity.Controllers
             {
                 return View(viewModel);
             }
-            var user = await _userManager.FindByNameAsync(viewModel.UserName);
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "User not found");
-                return View(viewModel);
-            }
+            //var user = await _userManager.FindByNameAsync(viewModel.UserName);
+            //if (user == null)
+            //{
+            //    ModelState.AddModelError(string.Empty, "User not found");
+            //    return View(viewModel);
+            //}
 
             var result = await _signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
             if (result.Succeeded)
@@ -82,7 +88,6 @@ namespace Identity.Controllers
             return View(viewModel);
 
         }
-
         public async Task<IActionResult> Logout(string logoutId)
         {
             await _signInManager.SignOutAsync();
