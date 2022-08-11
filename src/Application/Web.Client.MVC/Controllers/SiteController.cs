@@ -12,6 +12,8 @@ namespace Web.Client.MVC.Controllers
         [Route("[action]")]
         public IActionResult Index()
         {
+            var isAuth = HttpContext.User.Identity?.IsAuthenticated;
+
             return View();
         }
 
@@ -19,6 +21,7 @@ namespace Web.Client.MVC.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Secret()
         {
+            
             var jsonToken = await HttpContext.GetTokenAsync("access_token");
             var idToken = HttpContext.GetTokenAsync("id_token").GetAwaiter().GetResult();
             var token = new JwtSecurityTokenHandler().ReadJwtToken(jsonToken);

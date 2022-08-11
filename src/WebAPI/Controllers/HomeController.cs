@@ -13,13 +13,14 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public string Index()
         {
-            return "HelloWorld";
+            var userId = HttpContext.User.Claims.FirstOrDefault(e => e.Type == "sub").Value;
+            return userId;
         }
         //[HttpGet]
         //[Authorize]

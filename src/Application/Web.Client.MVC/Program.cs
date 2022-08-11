@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
@@ -8,11 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(config =>
     {
         config.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        config.DefaultChallengeScheme = "oidc";
+        //config.DefaultChallengeScheme = "oidc";
+        config.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
     })
     //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddOpenIdConnect("oidc", config =>
+    .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, config =>
     {
         config.Authority = "https://localhost:8001";
         config.ClientId = "client_id_mvc";

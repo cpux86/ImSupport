@@ -18,8 +18,20 @@ namespace Identity
                     ClientId = "client",
                     ClientSecrets = { new Secret("client_secret_mvc".ToSha256())},
                     //ClientName = "Web",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = {"WebAPI"}
+                    //AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    AllowedScopes =
+                    {
+                        "WebAPI",
+                        "Api",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    },
+                    //AllowedCorsOrigins =
+                    //{
+                    //    //"https://localhost:7001"
+                    //}
+                    
                     //RequireClientSecret = false,
                     //RequirePkce = true,
                     //RedirectUris =
@@ -66,14 +78,23 @@ namespace Identity
             {
                 new ApiResource("WebAPI", "Web API", new [] { JwtClaimTypes.Name})
                 {
-                    Scopes = { "WebAPI"}
+                    Scopes =
+                    {
+                        "WebAPI",
+                        "Api"
+                    }
                 }
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("WebAPI", "Web API")
+                //new ApiScope("Api", "Web API")
+                new ApiScope("Api",new List<string>
+                {
+                    "WebAPI",
+                    "Api"
+                })
             };
         public static IEnumerable<IdentityResource> IdentityResources =>
             new List<IdentityResource>

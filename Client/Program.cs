@@ -10,13 +10,24 @@ if (disco.IsError)
     Console.WriteLine(disco.Error);
 }
 
-var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
 {
     Address = disco.TokenEndpoint,
+    UserName = "admin",
+    Password = "LaMp368&",
     ClientId = "client",
     ClientSecret = "client_secret_mvc",
-    Scope = "WebAPI"
+    Scope = "Api"
 });
+
+//var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+//{
+//    Address = disco.TokenEndpoint,
+//    ClientId = "client",
+//    ClientSecret = "client_secret_mvc",
+//    Scope = "Api"
+//});
+
 if (tokenResponse.IsError)
 {
     Console.WriteLine(tokenResponse.Error);

@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using IdentityServer4.AccessTokenValidation;
 using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,71 +23,18 @@ builder.Services.AddCors(options =>
 }
     );
 
-//builder.Services.AddAuthentication(config =>
-//{
-//    config.DefaultAuthenticateScheme =
-//        JwtBearerDefaults.AuthenticationScheme;
-//    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//})
-//    .AddJwtBearer("Bearer", options =>
-//{
-//    options.Authority = "https://localhost:5001/";
-//    options.Audience = "web-api";
-//    options.RequireHttpsMetadata = false;
-//});
-//builder.Services.AddAuthentication(config =>
-//    {
-//        config.DefaultAuthenticateScheme =
-//            JwtBearerDefaults.AuthenticationScheme;
-//        config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//    })
-//    .AddJwtBearer("Bearer", options =>
-//    {
-//        byte[] secretBytes = Encoding.UTF8.GetBytes(Constants.SecretKey);
-
-//        var key = new SymmetricSecurityKey(secretBytes);
-
-//        //options.Authority = "https://localhost:5001/";
-//        //options.Audience = "web-api";
-//        //options.RequireHttpsMetadata = false;
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidAudience = false,
-//            ValidIssuer = Constants.Issuer,
-//            ValidAudiences = Constants.Audience,
-//            IssuerSigningKey = key
-//        };
-//    });
-
- builder.Services.AddAuthentication("OAuth")
-        .AddJwtBearer("OAuth", config =>
-        {
-            byte[] secretBytes = Encoding.UTF8.GetBytes(Constants.SecretKey);
-
-            var key = new SymmetricSecurityKey(secretBytes);
-
-            config.Events = new JwtBearerEvents
-            {
-                OnMessageReceived = context =>
-                {
-                    if (context.Request.Query.ContainsKey("t"))
-                    {
-                        context.Token = context.Request.Query["t"];
-                    }
-                    return Task.CompletedTask;
-                }
-            };
-
-            config.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateAudience = false,
-                ValidIssuer = Constants.Issuer,
-                ValidAudience = Constants.Audience,
-                IssuerSigningKey = key
-            };
-        });
-
-
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultAuthenticateScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+    })
+    .AddIdentityServerAuthentication(options =>
+    {
+        options.ApiName = "WebAPI";
+        options.Authority = "https://localhost:8001";
+        options.RequireHttpsMetadata = false;
+    });
 
 var app = builder.Build();
 
